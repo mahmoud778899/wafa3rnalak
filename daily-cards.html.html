@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎁 كارت اليوم المجاني - وفر شحنك</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffb3d9, #d1f0f6);
+      font-family: 'Cairo', sans-serif;
+      text-align: center;
+      padding: 30px;
+      direction: rtl;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #ff4081;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .card-container {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin: 40px auto;
+      max-width: 450px;
+      border: 2px solid #ff4081;
+    }
+
+    .card-code {
+      font-size: 24px;
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px 0;
+      direction: ltr;
+      font-weight: bold;
+      color: #00796b;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      user-select: all;
+    }
+
+    .copy-btn {
+      padding: 12px 30px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: #e91e63;
+    }
+
+    .share-links a {
+      display: inline-block;
+      margin: 15px;
+      color: #333;
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .share-links a:hover {
+      color: #ff4081;
+    }
+
+    p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .card-container h2 {
+      font-size: 22px;
+      color: #ff4081;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 كارت اليوم المجاني</h1>
+
+  <div class="card-container">
+    <h2>كود الشحن الخاص بك:</h2>
+    <div class="card-code" id="cardCode">*858*123456789012345#</div>
+    <button class="copy-btn" onclick="copyCode()">📋 نسخ الكود</button>
+    <p>ارجع كل يوم لكارت جديد 🎁</p>
+  </div>
+
+  <div class="share-links">
+    <p>شارك الموقع مع أصدقائك:</p>
+    <a href="https://api.whatsapp.com/send?text=جرب كارت شحن مجاني اليوم! https://yourwebsite.com/card-of-the-day.html" target="_blank">واتساب</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com/card-of-the-day.html" target="_blank">فيسبوك</a>
+  </div>
+
+  <script>
+    function copyCode() {
+      const code = document.getElementById('cardCode').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('✅ تم نسخ الكود!');
+      });
+    }
+  </script>
+</body>
+</html>
