@@ -78,5 +78,22 @@
     <li><a href="article14.html">كيف تزيد فرصك في الحصول على كارت شحن</a></li>
     <li><a href="article15.html">كيفية التواصل مع الشركات للحصول على عروض مجانية</a></li>
   </ul>
+    <!-- تنبيه ملفات الارتباط -->
+  <div id="cookie-banner" style="position: fixed; bottom: 0; right: 0; left: 0; background-color: #333; color: white; padding: 1rem; text-align: center; z-index: 9999; display: none;">
+    هذا الموقع يستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك. <button onclick="acceptCookies()" style="background-color: #4caf50; color: white; border: none; padding: 0.5rem 1rem; margin-right: 1rem; cursor: pointer;">موافق</button>
+  </div>
+
+  <script>
+    function acceptCookies() {
+      localStorage.setItem("cookiesAccepted", "true");
+      document.getElementById("cookie-banner").style.display = "none";
+    }
+
+    window.onload = function () {
+      if (!localStorage.getItem("cookiesAccepted")) {
+        document.getElementById("cookie-banner").style.display = "block";
+      }
+    };
+  </script>   
 </body>
 </html>
