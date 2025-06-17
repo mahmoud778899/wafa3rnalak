@@ -1,63 +1,431 @@
-﻿
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3043084219356057"
-     crossorigin="anonymous"></script>
+<head>
   <meta charset="UTF-8">
-  <title>wafa3rnalak-وفرنالك</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <title>وفرنالك - Wafa3rnalak</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Cairo', sans-serif; background: #fff; color: #222; padding: 2rem; line-height: 1.8; }
-    h1 { color: #d32f2f; }
-    a { color: #1976d2; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    ul { padding-right: 1rem; }
-    nav { background-color: #f44336; padding: 1rem; text-align: center; }
-    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    .offer-box { border: 1px solid #ccc; padding: 1rem; margin-top: 1rem; border-radius: 8px; background-color: #f9f9f9; }
-    .offer-box h3 { color: #333; margin-bottom: 0.5rem; }
+    :root {
+      --primary: #2a6bcc;
+      --secondary: #3498db;
+      --accent: #e67e22;
+      --light: #f8f9fa;
+      --dark: #2c3e50;
+      --success: #27ae60;
+      --warning: #f39c12;
+      --danger: #e74c3c;
+      --dashboard: #9b59b6;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: var(--text);
+      padding: 1rem;
+      line-height: 1.8;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    nav {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      padding: 1.2rem;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    
+    nav a {
+      color: white;
+      margin: 0 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      background: rgba(255,255,255,0.15);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+    
+    h1 {
+      color: var(--dark);
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin: 1.5rem 0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin: 1.2rem 0;
+    }
+    
+    h3 {
+      color: var(--secondary);
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin: 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary);
+    }
+    
+    .section-title {
+      background: linear-gradient(to right, var(--warning), var(--accent));
+      color: white;
+      padding: 0.8rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 2rem 0 1.5rem;
+      font-weight: 600;
+      font-size: 1.5rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+      margin: 2.5rem 0;
+    }
+    
+    .card {
+      flex: 1 1 280px;
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    
+    .games-card { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
+    .bot-card { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+    .apps-card { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
+    .dashboard-card { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+    
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .offer-box {
+      background: white;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--accent);
+    }
+    
+    .offer-box h3 {
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    
+    footer {
+      background: linear-gradient(to right, var(--dark), #1a252f);
+      color: white;
+      padding: 1.8rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-radius: 16px 16px 0 0;
+      font-weight: 400;
+    }
+    
+    footer p {
+      margin: 0.8rem 0;
+    }
+    
+    footer a {
+      color: #bdc3c7;
+      margin: 0 0.8rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background: var(--dark);
+      color: white;
+      padding: 1.2rem;
+      text-align: center;
+      z-index: 9999;
+      display: none;
+      font-size: 0.95rem;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+    }
+    
+    #cookie-banner button {
+      background: linear-gradient(to right, var(--success), #2ecc71);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      margin-right: 1rem;
+      cursor: pointer;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    #cookie-banner button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* تسجيل الدخول للوحة الإدارة */
+    #login-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    }
+    
+    .login-container h2 {
+      color: var(--dashboard);
+      margin-top: 0;
+    }
+    
+    .input-group {
+      margin-bottom: 1.5rem;
+      text-align: right;
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .login-btn {
+      background: linear-gradient(to right, var(--dashboard), #8e44ad);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    .login-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
+    }
+    
+    .error-message {
+      color: var(--danger);
+      margin-top: 1rem;
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+      
+      .card {
+        flex: 1 1 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <nav>
-       <a href="index.html">الرئيسية</a>
+    <a href="index.html">الرئيسية</a>
     <a href="#articles">المقالات</a>
-   <a href="daily-cards.html">كارت اليوم</a> 
+    <a href="#" id="dashboard-link">لوحة الإدارة</a>
     <a href="about.html">من نحن</a>
     <a href="contact.html">تواصل معنا</a>
- <a href="privacy-policy.html">سياسة الخصوصية</a>
-
+    <a href="privacy-policy.html">سياسة الخصوصية</a>
   </nav>
 
-  <h1>مرحبا بك في موقع وفرنالك-wafa3rnalak</h1>
-    <div style="background-color: #ff9800; color: white; text-align: center; padding: 10px; font-weight: bold;">
-<h2><div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin: 2rem 0;">
-  <a href="games1.html" style="flex: 1 1 200px; text-align: center; background: #f44336; color: white; padding: 1.5rem; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;">
-    🎮 قسم الألعاب
-  </a>
-  <a href="bot.html" style="flex: 1 1 200px; text-align: center; background: #4CAF50; color: white; padding: 1.5rem; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;">
-    🤖 بوتات تليجرام
-  </a>
-  <a href="offers.html" style="flex: 1 1 200px; text-align: center; background: #2196F3; color: white; padding: 1.5rem; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s;">
-    💳 تطبيقات موصى بها لك
-  </a>
-</div>
-     <h2>
-
-
-
-
-
-
-
-          
-  <h3 id="articles">📚 مقالات مميزة:</h3>
-    <!-- تنبيه ملفات الارتباط -->
-  <div id="cookie-banner" style="position: fixed; bottom: 0; right: 0; left: 0; background-color: #333; color: white; padding: 1rem; text-align: center; z-index: 9999; display: none;">
-    هذا الموقع يستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك. <button onclick="acceptCookies()" style="background-color: #4caf50; color: white; border: none; padding: 0.5rem 1rem; margin-right: 1rem; cursor: pointer;">موافق</button>
+  <h1>مرحبًا بك في موقع وفرنالك</h1>
+  
+  <div class="section-title">اكتشف أقسامنا المميزة</div>
+  
+  <div class="cards-container">
+    <a href="games1.html" class="card games-card">
+      <span class="card-icon">🎮</span>
+      <div class="card-title">قسم الألعاب</div>
+    </a>
+    
+    <a href="bot.html" class="card bot-card">
+      <span class="card-icon">🤖</span>
+      <div class="card-title">بوتات تليجرام</div>
+    </a>
+    
+    <a href="offers.html" class="card apps-card">
+      <span class="card-icon">💳</span>
+      <div class="card-title">تطبيقات موصى بها</div>
+    </a>
+    
+    <!-- لوحة الإدارة - خاص بالمالك فقط -->
+    <a href="#" id="dashboard-card-link" class="card dashboard-card">
+      <span class="card-icon">📊</span>
+      <div class="card-title">لوحة الإدارة</div>
+    </a>
+  </div>
+  
+  <div class="offer-box">
+    <h3>أفضل العروض هذا الأسبوع</h3>
+    <p>اكتشف أحدث العروض والتخفيضات الحصرية من متجرنا الإلكتروني</p>
+  </div>
+  
+  <!-- نافذة تسجيل الدخول للوحة الإدارة -->
+  <div id="login-modal">
+    <div class="login-container">
+      <h2>تسجيل الدخول للوحة الإدارة</h2>
+      <p>هذه اللوحة خاصة بمالك الموقع فقط</p>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="username">اسم المستخدم:</label>
+          <input type="text" id="username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">كلمة المرور:</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit" class="login-btn">دخول</button>
+        <div id="error-message" class="error-message">بيانات الدخول غير صحيحة!</div>
+      </form>
+    </div>
+  </div>
+  
+  <div id="cookie-banner">
+    هذا الموقع يستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك.
+    <button onclick="acceptCookies()">موافق</button>
   </div>
 
   <script>
+    // بيانات المالك (يمكن تغييرها حسب الحاجة)
+    const adminCredentials = {
+      username: "admin",
+      password: "admin123"
+    };
+    
+    // عناصر DOM
+    const loginModal = document.getElementById('login-modal');
+    const loginForm = document.getElementById('login-form');
+    const dashboardLink = document.getElementById('dashboard-link');
+    const dashboardCardLink = document.getElementById('dashboard-card-link');
+    const errorMessage = document.getElementById('error-message');
+    
+    // فتح نافذة تسجيل الدخول عند النقر على لوحة الإدارة
+    function openLoginModal() {
+      loginModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // منع التمرير
+    }
+    
+    // إغلاق نافذة تسجيل الدخول
+    function closeLoginModal() {
+      loginModal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // إعادة التمرير
+    }
+    
+    // التحقق من بيانات الدخول
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      if (username === adminCredentials.username && password === adminCredentials.password) {
+        // نجاح الدخول
+        closeLoginModal();
+        alert('تم الدخول بنجاح إلى لوحة الإدارة!');
+        window.location.href = 'dashboard.html'; // توجيه إلى لوحة الإدارة
+      } else {
+        // فشل الدخول
+        errorMessage.style.display = 'block';
+        setTimeout(() => {
+          errorMessage.style.display = 'none';
+        }, 3000);
+      }
+    });
+    
+    // إضافة المستمعين للأحداث
+    dashboardLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      openLoginModal();
+    });
+    
+    dashboardCardLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      openLoginModal();
+    });
+    
+    // إغلاق النافذة عند النقر خارجها
+    loginModal.addEventListener('click', function(e) {
+      if (e.target === loginModal) {
+        closeLoginModal();
+      }
+    });
+    
+    // ملفات تعريف الارتباط
     function acceptCookies() {
       localStorage.setItem("cookiesAccepted", "true");
       document.getElementById("cookie-banner").style.display = "none";
@@ -68,13 +436,15 @@
         document.getElementById("cookie-banner").style.display = "block";
       }
     };
-<footer style="background-color: #f44336; color: white; padding: 1rem; text-align: center; margin-top: 2rem; border-radius: 10px 10px 0 0;">
-  <p>© 2025 وفر شحنك - جميع الحقوق محفوظة</p>
-  <p>
-    <a href="index.html" style="color: #fff; margin: 0 10px;">الرئيسية</a> |
-    <a href="offers.html" style="color: #fff; margin: 0 10px;">العروض</a> |
-    <a href="signup.html" style="color: #fff; margin: 0 10px;">تسجيل حساب</a>
-  </p>
-</footer>
+  </script>
+  
+  <footer>
+    <p>© 2025 وفرنالك - جميع الحقوق محفوظة</p>
+    <p>
+      <a href="index.html">الرئيسية</a> |
+      <a href="offers.html">العروض</a> |
+      <a href="signup.html">تسجيل حساب</a>
+    </p>
+  </footer>
 </body>
 </html>
