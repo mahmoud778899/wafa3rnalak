@@ -1,0 +1,813 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيقات موصى بها</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #60a5fa;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --admin-bg: rgba(15, 23, 42, 0.95);
+            --admin-card: rgba(30, 58, 138, 0.5);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c4a6e, #1e40af, #0c4a6e);
+            background-attachment: fixed;
+            color: var(--light);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* التصميم العام */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        nav a.active {
+            background: var(--primary);
+        }
+
+        .main-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.4);
+        }
+
+        .main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* قسم التطبيقات */
+        .apps-section {
+            margin: 40px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .app-image {
+            height: 180px;
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .app-content {
+            padding: 20px;
+        }
+
+        .app-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .app-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+            line-height: 1.6;
+            min-height: 80px;
+        }
+
+        .app-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #ffc107;
+        }
+
+        .download-btn {
+            background: var(--secondary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+        }
+
+        /* لوحة الإدارة */
+        .admin-panel {
+            background: var(--admin-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 900px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .admin-panel h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .admin-form {
+            background: var(--admin-card);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .admin-form h4 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.7);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--accent);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        /* التذييل */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* صفحات إضافية */
+        .page-content {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 900px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            min-height: 500px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .page-content h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .page-content p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* زر العودة */
+        .back-to-home {
+            display: inline-block;
+            margin-top: 30px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.4);
+        }
+
+        .back-to-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* رسائل التحقق */
+        .message {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+
+        .error {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+
+        /* التجاوب */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h1>تطبيقات موصى بها</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">الرئيسية</a></li>
+                        <li><a href="#admin">لوحة الإدارة</a></li>
+                        <li><a href="#policies">سياسات جوجل</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#" class="main-btn"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة الرئيسية -->
+    <div class="container">
+        <section class="apps-section">
+            <div class="section-header">
+                <h2>اكتشف أفضل التطبيقات الموصى بها</h2>
+                <p>مجموعة مختارة من أفضل التطبيقات التي نوصي بها لك، تم اختيارها بعناية لتحسين تجربتك وتلبية احتياجاتك اليومية</p>
+            </div>
+
+            <div class="apps-grid" id="appsContainer">
+                <!-- سيتم إدراج التطبيقات هنا عبر JavaScript -->
+            </div>
+        </section>
+
+        <!-- لوحة الإدارة -->
+        <section id="admin">
+            <div class="admin-panel">
+                <h3><i class="fas fa-lock"></i> لوحة إدارة التطبيقات (للمسؤول فقط)</h3>
+                <div class="admin-form">
+                    <h4>تسجيل الدخول</h4>
+                    <div class="form-group">
+                        <label for="adminUsername">اسم المستخدم</label>
+                        <input type="text" id="adminUsername" class="form-control" placeholder="أدخل اسم المستخدم">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">كلمة المرور</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="adminPassword" class="form-control" placeholder="أدخل كلمة المرور">
+                            <i class="fas fa-eye password-toggle" id="passwordToggle"></i>
+                        </div>
+                    </div>
+                    <button class="main-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>
+                    <div id="loginMessage" class="message"></div>
+                </div>
+
+                <!-- قسم إضافة التطبيقات (مخفي في البداية) -->
+                <div id="appManagement" style="display: none;">
+                    <div class="admin-form">
+                        <h4>إضافة تطبيق جديد</h4>
+                        <div class="form-group">
+                            <label for="appName">اسم التطبيق</label>
+                            <input type="text" id="appName" class="form-control" placeholder="أدخل اسم التطبيق">
+                        </div>
+                        <div class="form-group">
+                            <label for="appDesc">وصف التطبيق</label>
+                            <textarea id="appDesc" class="form-control" placeholder="أدخل وصف التطبيق" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="appLink">رابط التحميل</label>
+                            <input type="text" id="appLink" class="form-control" placeholder="أدخل رابط التحميل من Google Play">
+                        </div>
+                        <div class="form-group">
+                            <label for="appIcon">أيقونة التطبيق (اختياري)</label>
+                            <select id="appIcon" class="form-control">
+                                <option value="fas fa-mobile-alt">أيقونة عامة</option>
+                                <option value="fab fa-whatsapp">واتساب</option>
+                                <option value="fab fa-facebook">فيسبوك</option>
+                                <option value="fab fa-instagram">إنستغرام</option>
+                                <option value="fab fa-youtube">يوتيوب</option>
+                                <option value="fab fa-twitter">تويتر</option>
+                                <option value="fab fa-spotify">سبوتيفاي</option>
+                                <option value="fas fa-shopping-cart">تسوق</option>
+                                <option value="fas fa-gamepad">ألعاب</option>
+                                <option value="fas fa-camera">كاميرا</option>
+                            </select>
+                        </div>
+                        <button class="main-btn" id="addAppBtn"><i class="fas fa-plus"></i> إضافة تطبيق</button>
+                        <div id="appMessage" class="message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- صفحة سياسات جوجل -->
+        <section id="policies" class="page-content" style="display: none;">
+            <h2><i class="fas fa-file-contract"></i> سياسات جوجل للتطبيقات</h2>
+            <p>تلتزم جميع التطبيقات المعروضة على هذه الصفحة بسياسات جوجل بلاي للحفاظ على بيئة آمنة ومأمونة للمستخدمين. فيما يلي أهم السياسات التي نلتزم بها:</p>
+            
+            <h3>سياسة الخصوصية</h3>
+            <p>يجب أن تحترم التطبيقات خصوصية المستخدمين وأن تحصل على موافقتهم قبل جمع أو مشاركة أي معلومات شخصية. يجب أن تتضمن سياسة خصوصية واضحة توضح كيفية جمع البيانات واستخدامها.</p>
+            
+            <h3>سياسة المحتوى</h3>
+            <p>يمنع عرض محتوى غير لائق، مسيء، أو غير قانوني. يجب أن تكون التطبيقات مناسبة لجميع الفئات العمرية ما لم يتم تحديد خلاف ذلك بوضوح.</p>
+            
+            <h3>سياسة الأمان</h3>
+            <p>يجب ألا تحتوي التطبيقات على برمجيات خبيثة أو فيروسات أو أي كود ضار. كما يجب أن تحمي البيانات الحساسة للمستخدمين.</p>
+            
+            <h3>سياسة الملكية الفكرية</h3>
+            <p>يجب أن تحترم التطبيقات حقوق الملكية الفكرية ولا تنتهك حقوق الآخرين في العلامات التجارية أو حقوق النشر.</p>
+            
+            <h3>سياسة الإعلانات</h3>
+            <p>يجب أن تلتزم الإعلانات المعروضة داخل التطبيقات بسياسات جوجل للإعلانات، وألا تكون مضللة أو تخدع المستخدمين.</p>
+            
+            <a href="#" class="back-to-home"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
+        </section>
+
+        <!-- صفحة من نحن -->
+        <section id="about" class="page-content" style="display: none;">
+            <h2><i class="fas fa-users"></i> من نحن</h2>
+            <p>نحن فريق من خبراء التكنولوجيا والمطورين المختصين في مجال التطبيقات المحمولة، مهمتنا مساعدتك في اكتشاف أفضل التطبيقات التي تثري تجربتك الرقمية.</p>
+            
+            <h3>رؤيتنا</h3>
+            <p>نسعى لخلق منصة موثوقة تقدم للمستخدمين تجربة فريدة في اكتشاف التطبيقات المفيدة والآمنة، مع التركيز على الجودة والموثوقية.</p>
+            
+            <h3>مهمتنا</h3>
+            <p>تقديم توصيات دقيقة وموثوقة للتطبيقات التي تجعل حياتك أسهل وأكثر إنتاجية، مع مراعاة معايير الجودة والأمان والخصوصية.</p>
+            
+            <h3>فريق العمل</h3>
+            <p>يتكون فريقنا من متخصصين في عدة مجالات:</p>
+            <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 2;">
+                <li>خبراء في تحليل وتقييم التطبيقات</li>
+                <li>مطورو تطبيقات محترفون</li>
+                <li>محللون لأداء التطبيقات</li>
+                <li>متخصصون في أمن المعلومات</li>
+            </ul>
+            
+            <h3>معايير الاختيار</h3>
+            <p>نختار التطبيقات بناءً على عدة معايير صارمة:</p>
+            <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 2;">
+                <li>جودة التصميم وسهولة الاستخدام</li>
+                <li>الأداء والاستقرار</li>
+                <li>تقييمات المستخدمين</li>
+                <li>الالتزام بسياسات الخصوصية والأمان</li>
+                <li>فائدة التطبيق وتجربة المستخدم</li>
+            </ul>
+            
+            <a href="#" class="back-to-home"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
+        </section>
+    </div>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> الصفحة الرئيسية</a></li>
+                        <li><a href="#admin"><i class="fas fa-cog"></i> لوحة الإدارة</a></li>
+                        <li><a href="#policies"><i class="fas fa-file-contract"></i> سياسات جوجل</a></li>
+                        <li><a href="#about"><i class="fas fa-users"></i> من نحن</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>فئات التطبيقات</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-gamepad"></i> الألعاب</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i> التسوق</a></li>
+                        <li><a href="#"><i class="fas fa-graduation-cap"></i> التعليم</a></li>
+                        <li><a href="#"><i class="fas fa-heartbeat"></i> الصحة واللياقة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@app-recommend.com</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> فيسبوك</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> تويتر</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> إنستغرام</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 تطبيقات موصى بها. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات التطبيقات
+        const apps = [
+            {id: 1, name: "واتساب", description: "تطبيق المراسلة الأكثر شعبية حول العالم، يتيح لك إجراء محادثات نصية وصوتية ومكالمات فيديو", link: "https://play.google.com/store/apps/details?id=com.whatsapp", icon: "fab fa-whatsapp", rating: 4.5},
+            {id: 2, name: "فيسبوك", description: "منصة التواصل الاجتماعي الرائدة، تتيح لك التواصل مع الأصدقاء والعائلة ومشاركة اللحظات المميزة", link: "https://play.google.com/store/apps/details?id=com.facebook.katana", icon: "fab fa-facebook", rating: 4.0},
+            {id: 3, name: "إنستغرام", description: "شارك الصور والفيديوهات مع أصدقائك ومتابعيك، واستكشف المحتوى من حول العالم", link: "https://play.google.com/store/apps/details?id=com.instagram.android", icon: "fab fa-instagram", rating: 4.4},
+            {id: 4, name: "يوتيوب", description: "منصة الفيديوهات الأشهر عالمياً، شاهد مقاطع الفيديو المفضلة لديك أو أنشئ قناتك الخاصة", link: "https://play.google.com/store/apps/details?id=com.google.android.youtube", icon: "fab fa-youtube", rating: 4.6},
+            {id: 5, name: "تويتر", description: "تابع آخر الأخبار والتحديثات، وشارك آرائك مع العالم في منصة التغريدات القصيرة", link: "https://play.google.com/store/apps/details?id=com.twitter.android", icon: "fab fa-twitter", rating: 4.1},
+            {id: 6, name: "سبوتيفاي", description: "استمع إلى الملايين من الأغاني والبودكاست من مختلف أنحاء العالم", link: "https://play.google.com/store/apps/details?id=com.spotify.music", icon: "fab fa-spotify", rating: 4.7},
+            {id: 7, name: "تطبيق الصحة", description: "تتبع نشاطك البدني، نومك، تغذيتك وحالتك الصحية العامة", link: "#", icon: "fas fa-heartbeat", rating: 4.3},
+            {id: 8, name: "مترجم جوجل", description: "ترجمة نصوص وفيديوهات ومحادثات مباشرة بين أكثر من 100 لغة", link: "https://play.google.com/store/apps/details?id=com.google.android.apps.translate", icon: "fas fa-language", rating: 4.4},
+            {id: 9, name: "أوبر", description: "احجز رحلات تنقل مع سائقين محليين في أكثر من 700 مدينة حول العالم", link: "https://play.google.com/store/apps/details?id=com.ubercab", icon: "fas fa-car", rating: 4.5},
+            {id: 10, name: "باي بال", description: "أرسل واستلم الأموال بسهولة وأمان عبر الإنترنت", link: "https://play.google.com/store/apps/details?id=com.paypal.android.p2pmobile", icon: "fab fa-paypal", rating: 4.3},
+        ];
+
+        // معلومات تسجيل الدخول للمسؤول
+        const adminCredentials = {
+            username: "admin",
+            password: "admin123" // كلمة مرور افتراضية - يجب تغييرها في الإنتاج
+        };
+
+        // عرض التطبيقات
+        function renderApps() {
+            const appsContainer = document.getElementById('appsContainer');
+            appsContainer.innerHTML = '';
+            
+            apps.forEach(app => {
+                const appCard = document.createElement('div');
+                appCard.className = 'app-card';
+                appCard.innerHTML = `
+                    <div class="app-image">
+                        <i class="${app.icon}"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>${app.name}</h3>
+                        <p>${app.description}</p>
+                        <div class="app-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>${app.rating}</span>
+                            </div>
+                            <a href="${app.link}" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> تحميل
+                            </a>
+                        </div>
+                    </div>
+                `;
+                appsContainer.appendChild(appCard);
+            });
+        }
+
+        // تسجيل الدخول للمسؤول
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const messageElement = document.getElementById('loginMessage');
+            
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                messageElement.textContent = 'تم تسجيل الدخول بنجاح!';
+                messageElement.className = 'message success';
+                messageElement.style.display = 'block';
+                
+                // إظهار قسم إدارة التطبيقات
+                document.getElementById('appManagement').style.display = 'block';
+                
+                // إخفاء رسالة النجاح بعد 3 ثوان
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 3000);
+            } else {
+                messageElement.textContent = 'اسم المستخدم أو كلمة المرور غير صحيحة!';
+                messageElement.className = 'message error';
+                messageElement.style.display = 'block';
+            }
+        });
+
+        // إظهار/إخفاء كلمة المرور
+        document.getElementById('passwordToggle').addEventListener('click', function() {
+            const passwordInput = document.getElementById('adminPassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
+            }
+        });
+
+        // إضافة تطبيق جديد
+        document.getElementById('addAppBtn').addEventListener('click', function() {
+            const name = document.getElementById('appName').value;
+            const desc = document.getElementById('appDesc').value;
+            const link = document.getElementById('appLink').value;
+            const icon = document.getElementById('appIcon').value;
+            const messageElement = document.getElementById('appMessage');
+            
+            if (name && desc && link) {
+                const newApp = {
+                    id: apps.length + 1,
+                    name: name,
+                    description: desc,
+                    link: link,
+                    icon: icon,
+                    rating: 4.0
+                };
+                
+                apps.push(newApp);
+                renderApps();
+                
+                // مسح الحقول
+                document.getElementById('appName').value = '';
+                document.getElementById('appDesc').value = '';
+                document.getElementById('appLink').value = '';
+                
+                messageElement.textContent = 'تم إضافة التطبيق بنجاح!';
+                messageElement.className = 'message success';
+                messageElement.style.display = 'block';
+                
+                // إخفاء الرسالة بعد 3 ثوان
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 3000);
+            } else {
+                messageElement.textContent = 'يرجى ملء جميع الحقول المطلوبة!';
+                messageElement.className = 'message error';
+                messageElement.style.display = 'block';
+            }
+        });
+
+        // التنقل بين الصفحات
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#policies') {
+                    document.querySelector('#policies').style.display = 'block';
+                    document.querySelector('#about').style.display = 'none';
+                } else if (this.getAttribute('href') === '#about') {
+                    document.querySelector('#about').style.display = 'block';
+                    document.querySelector('#policies').style.display = 'none';
+                } else {
+                    document.querySelector('#policies').style.display = 'none';
+                    document.querySelector('#about').style.display = 'none';
+                }
+            });
+        });
+
+        // زر العودة للصفحة الرئيسية
+        document.querySelectorAll('.back-to-home').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#policies').style.display = 'none';
+                document.querySelector('#about').style.display = 'none';
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // تهيئة الصفحة
+        window.onload = function() {
+            renderApps();
+        };
+    </script>
+</body>
+</html>
