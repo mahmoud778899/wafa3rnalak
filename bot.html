@@ -1,0 +1,615 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوتات تليجرام الشهيرة - دليل شامل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0088cc;
+            --secondary: #25d366;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --accent: #ff6b6b;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: white;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        
+        .category-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .bot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .bot-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bot-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .bot-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .bot-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .bot-category {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .bot-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .bot-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .bot-link {
+            display: block;
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .bot-link:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+        }
+        
+        .bot-link i {
+            margin-left: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .bot-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fab fa-telegram"></i>
+            </div>
+            <h1>دليل بوتات تليجرام الشهيرة</h1>
+            <p class="subtitle">
+                اكتشف أفضل البوتات على تليجرام لتحسين إنتاجيتك، ترفيهك، وتجربتك اليومية. أكثر من 30 بوت مفيد مصنّف حسب التخصص مع روابط مباشرة للبدء فوراً.
+            </p>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="ابحث عن بوت معين...">
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active">الكل</button>
+                <button class="category-btn">الإنتاجية</button>
+                <button class="category-btn">الترفيه</button>
+                <button class="category-btn">التنزيلات</button>
+                <button class="category-btn">الأدوات</button>
+                <button class="category-btn">التعليم</button>
+                <button class="category-btn">الوسائط</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="bot-grid">
+                <!-- البوتات ستضاف هنا -->
+            </div>
+        </main>
+        
+        <footer>
+            <p>جميع الحقوق محفوظة &copy; 2023 | دليل بوتات تليجرام الشهيرة</p>
+            <p>تم التصميم بعناية لتجربة مستخدم استثنائية</p>
+        </footer>
+    </div>
+
+    <script>
+        // بيانات البوتات
+        const bots = [
+            {
+                name: "بوت التحميل",
+                category: "التنزيلات",
+                description: "تحميل فيديوهات من يوتيوب، انستجرام، تيك توك وغيرها من المنصات بجودة عالية.",
+                link: "https://t.me/vid",
+                icon: "cloud-download-alt",
+                featured: true
+            },
+            {
+                name: "بوت الموسيقى",
+                category: "الترفيه",
+                description: "البحث عن الأغاني وتشغيلها مباشرة في المحادثة، مع إمكانية حفظها للاستماع لاحقاً.",
+                link: "https://t.me/music",
+                icon: "music",
+                featured: true
+            },
+            {
+                name: "بوت المترجم",
+                category: "الأدوات",
+                description: "ترجمة النصوص والرسائل بين أكثر من 100 لغة بدقة عالية وسرعة فائقة.",
+                link: "https://t.me/translator",
+                icon: "language",
+                featured: false
+            },
+            {
+                name: "بوت الأخبار",
+                category: "الأدوات",
+                description: "الحصول على آخر الأخبار المحلية والعالمية من مصادر موثوقة في مختلف المجالات.",
+                link: "https://t.me/news",
+                icon: "newspaper",
+                featured: false
+            },
+            {
+                name: "بوت الطقس",
+                category: "الأدوات",
+                description: "معرفة حالة الطقس الحالية والتوقعات لمدينتك أو أي مدينة في العالم.",
+                link: "https://t.me/weather",
+                icon: "cloud-sun",
+                featured: false
+            },
+            {
+                name: "بوت الملصقات",
+                category: "الترفيه",
+                description: "إنشاء وتخصيص ملصقات خاصة بك من الصور ومشاركتها مع الأصدقاء.",
+                link: "https://t.me/stickers",
+                icon: "sticky-note",
+                featured: true
+            },
+            {
+                name: "بوت المهام",
+                category: "الإنتاجية",
+                description: "إدارة المهام اليومية، تحديد مواعيد التسليم، وتذكير بالمهام المعلقة.",
+                link: "https://t.me/tasks",
+                icon: "tasks",
+                featured: true
+            },
+            {
+                name: "بوت التقويم",
+                category: "الإنتاجية",
+                description: "تنظيم المواعيد والأحداث الهامة مع إرسال تذكيرات قبل الموعد المحدد.",
+                link: "https://t.me/calendar",
+                icon: "calendar",
+                featured: false
+            },
+            {
+                name: "بوت التصويت",
+                category: "الأدوات",
+                description: "إنشاء استطلاعات الرأي والتصويتات الجماعية بسهولة ودقة عالية.",
+                link: "https://t.me/vote",
+                icon: "poll",
+                featured: false
+            },
+            {
+                name: "بوت الألعاب",
+                category: "الترفيه",
+                description: "مجموعة من الألعاب المسلية التي يمكن لعبها داخل المجموعات أو بشكل فردي.",
+                link: "https://t.me/games",
+                icon: "gamepad",
+                featured: true
+            },
+            {
+                name: "بوت التحويل",
+                category: "الأدوات",
+                description: "تحويل الصيغ بين الوحدات المختلفة مثل العملات، الأوزان، المسافات وغيرها.",
+                link: "https://t.me/convert",
+                icon: "exchange-alt",
+                featured: false
+            },
+            {
+                name: "بوت القرآن",
+                category: "التعليم",
+                description: "الاستماع وتلاوة القرآن الكريم، البحث عن الآيات، وحفظ القرآن بخطة منظمة.",
+                link: "https://t.me/quran",
+                icon: "book-quran",
+                featured: true
+            },
+            {
+                name: "بوت القواميس",
+                category: "التعليم",
+                description: "بحث سريع في معاني الكلمات والمرادفات والمصطلحات في عدة لغات.",
+                link: "https://t.me/dictionary",
+                icon: "book",
+                featured: false
+            },
+            {
+                name: "بوت الصور",
+                category: "الوسائط",
+                description: "البحث عن الصور وتحريرها وإضافة تأثيرات فنية عليها بسهولة.",
+                link: "https://t.me/images",
+                icon: "image",
+                featured: false
+            },
+            {
+                name: "بوت المحول",
+                category: "الوسائط",
+                description: "تحويل الصور والمستندات بين الصيغ المختلفة مثل PDF, Word, JPG وغيرها.",
+                link: "https://t.me/convertfile",
+                icon: "file-contract",
+                featured: false
+            },
+            {
+                name: "بوت الدردشة",
+                category: "الترفيه",
+                description: "محادثة ذكاء اصطناعي متطور يمكنه الإجابة على أسئلتك وتقديم المساعدة.",
+                link: "https://t.me/chat",
+                icon: "comments",
+                featured: true
+            },
+            {
+                name: "بوت الرياضيات",
+                category: "التعليم",
+                description: "حل المعادلات الرياضية، الرسم البياني، والمسائل الحسابية المعقدة.",
+                link: "https://t.me/math",
+                icon: "calculator",
+                featured: false
+            },
+            {
+                name: "بوت البرمجة",
+                category: "التعليم",
+                description: "تشغيل وتجربة الأكواد البرمجية بعدة لغات برمجية داخل التليجرام.",
+                link: "https://t.me/code",
+                icon: "code",
+                featured: true
+            },
+            {
+                name: "بوت الصحة",
+                category: "الأدوات",
+                description: "تتبع الصحة العامة، تحديد مواعيد الأدوية، ومراقبة العادات الصحية.",
+                link: "https://t.me/health",
+                icon: "heartbeat",
+                featured: false
+            },
+            {
+                name: "بوت التخزين",
+                category: "الأدوات",
+                description: "تخزين الملفات والصور في سحابة خاصة بحسابك واسترجاعها عند الحاجة.",
+                link: "https://t.me/cloud",
+                icon: "cloud",
+                featured: false
+            },
+            {
+                name: "بوت البث",
+                category: "الوسائط",
+                description: "بث مباشر للمجموعات والقنوات مع تفاعل الجمهور وإدارة البث بسهولة.",
+                link: "https://t.me/live",
+                icon: "broadcast-tower",
+                featured: true
+            },
+            {
+                name: "بوت التسوق",
+                category: "الأدوات",
+                description: "مقارنة الأسعار بين المتاجر، تتبع الطلبات، والعروض الترويجية.",
+                link: "https://t.me/shop",
+                icon: "shopping-cart",
+                featured: false
+            },
+            {
+                name: "بوت السفر",
+                category: "الأدوات",
+                description: "حجز تذاكر الطيران، الفنادق، واستكشاف وجهات السفر المميزة.",
+                link: "https://t.me/travel",
+                icon: "plane",
+                featured: false
+            },
+            {
+                name: "بوت التمارين",
+                category: "الصحة",
+                description: "تمارين يومية موجهة، تتبع اللياقة البدنية، ونصائح غذائية.",
+                link: "https://t.me/fitness",
+                icon: "dumbbell",
+                featured: true
+            },
+            {
+                name: "بوت التذكير",
+                category: "الإنتاجية",
+                description: "تذكيرك بالمواعيد الهامة والأحداث مع إمكانية التكرار حسب الحاجة.",
+                link: "https://t.me/remind",
+                icon: "bell",
+                featured: false
+            },
+            {
+                name: "بوت القصص",
+                category: "الترفيه",
+                description: "قصص مسموعة ومقروءة في مختلف المجالات مع إمكانية تنزيلها.",
+                link: "https://t.me/stories",
+                icon: "book-open",
+                featured: false
+            },
+            {
+                name: "بوت العملات",
+                category: "الأدوات",
+                description: "تتبع أسعار العملات الرقمية والتحويل بين العملات العالمية.",
+                link: "https://t.me/crypto",
+                icon: "coins",
+                featured: true
+            },
+            {
+                name: "بوت المساعدة",
+                category: "الأدوات",
+                description: "مساعدة فنية لحل مشاكل التطبيق والأسئلة الشائعة عن تليجرام.",
+                link: "https://t.me/help",
+                icon: "question-circle",
+                featured: false
+            },
+            {
+                name: "بوت التلخيص",
+                category: "الأدوات",
+                description: "تلخيص المقالات الطويلة والوثائق إلى نقاط رئيسية بطريقة ذكية.",
+                link: "https://t.me/summarize",
+                icon: "file-alt",
+                featured: false
+            },
+            {
+                name: "بوت الأمن",
+                category: "الأدوات",
+                description: "فحص الروابط المشبوهة وكشف التهديدات الأمنية قبل فتحها.",
+                link: "https://t.me/security",
+                icon: "shield-alt",
+                featured: true
+            }
+        ];
+
+        // عرض البوتات
+        const botGrid = document.querySelector('.bot-grid');
+        
+        bots.forEach(bot => {
+            const botCard = document.createElement('div');
+            botCard.className = 'bot-card';
+            
+            let featuredBadge = '';
+            if (bot.featured) {
+                featuredBadge = `<div class="featured-badge">مميز</div>`;
+            }
+            
+            botCard.innerHTML = `
+                ${featuredBadge}
+                <div class="bot-header">
+                    <div class="bot-icon">
+                        <i class="fas fa-${bot.icon}"></i>
+                    </div>
+                    <div>
+                        <div class="bot-name">${bot.name}</div>
+                        <div class="bot-category">${bot.category}</div>
+                    </div>
+                </div>
+                <div class="bot-body">
+                    <p class="bot-description">${bot.description}</p>
+                    <a href="${bot.link}" target="_blank" class="bot-link">
+                        فتح البوت <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            `;
+            
+            botGrid.appendChild(botCard);
+        });
+
+        // فلترة البوتات حسب التصنيف
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة النشط من جميع الأزرار
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // إضافة النشط للزر المحدد
+                btn.classList.add('active');
+                
+                const category = btn.textContent;
+                const botCards = document.querySelectorAll('.bot-card');
+                
+                botCards.forEach(card => {
+                    const cardCategory = card.querySelector('.bot-category').textContent;
+                    
+                    if (category === 'الكل' || cardCategory === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // وظيفة البحث
+        const searchBox = document.querySelector('.search-box');
+        searchBox.addEventListener('input', () => {
+            const searchTerm = searchBox.value.toLowerCase();
+            const botCards = document.querySelectorAll('.bot-card');
+            
+            botCards.forEach(card => {
+                const botName = card.querySelector('.bot-name').textContent.toLowerCase();
+                const botDescription = card.querySelector('.bot-description').textContent.toLowerCase();
+                const botCategory = card.querySelector('.bot-category').textContent.toLowerCase();
+                
+                if (botName.includes(searchTerm) || 
+                    botDescription.includes(searchTerm) || 
+                    botCategory.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
