@@ -1,102 +1,71 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <title>تسجيل دخول / إنشاء حساب</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-4 text-center text-blue-700">إنشاء حساب</h2>
-      <input
-        id="signupEmail"
-        type="email"
-        placeholder="البريد الإلكتروني"
-        class="w-full mb-3 px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      <input
-        id="signupPassword"
-        type="password"
-        placeholder="كلمة المرور"
-        class="w-full mb-4 px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      <button
-        onclick="signUp()"
-        class="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 mb-6"
-      >
-        إنشاء الحساب
-      </button>
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول أو إنشاء حساب</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
 
-      <hr class="mb-6" />
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold text-blue-600 mb-4">تسجيل الدخول</h1>
 
-      <h2 class="text-2xl font-bold mb-4 text-center text-green-700">تسجيل دخول</h2>
-      <input
-        id="loginEmail"
-        type="email"
-        placeholder="البريد الإلكتروني"
-        class="w-full mb-3 px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
-      />
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="كلمة المرور"
-        class="w-full mb-4 px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
-      />
-      <button
-        onclick="login()"
-        class="w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700"
-      >
-        تسجيل الدخول
-      </button>
-    </div>
+    <input id="login-email" type="email" placeholder="البريد الإلكتروني"
+      class="border border-gray-300 p-2 rounded w-full mb-3" required>
+    <input id="login-password" type="password" placeholder="كلمة المرور"
+      class="border border-gray-300 p-2 rounded w-full mb-3" required>
 
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-      import {
-        getAuth,
-        createUserWithEmailAndPassword,
-        signInWithEmailAndPassword,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    <button onclick="login()" class="bg-blue-600 text-white py-2 w-full rounded hover:bg-blue-700">
+      دخول
+    </button>
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyD9QijUrH298l7FvvDWz21umIEv7d9edBU",
-        authDomain: "wafa3rnalak.firebaseapp.com",
-        projectId: "wafa3rnalak",
-        storageBucket: "wafa3rnalak.firebasestorage.app",
-        messagingSenderId: "122333822215",
-        appId: "1:122333822215:web:60e839b8f67e759ea499a2",
-      };
+    <p class="mt-4 text-gray-600">ليس لديك حساب؟
+      <a href="register.html" class="text-blue-600 hover:underline">إنشاء حساب جديد</a>
+    </p>
 
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
+    <p id="login-message" class="mt-4 text-green-600 font-semibold"></p>
+  </div>
 
-      window.signUp = function () {
-        const email = document.getElementById("signupEmail").value;
-        const password = document.getElementById("signupPassword").value;
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        createUserWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            alert("🎉 تم إنشاء الحساب بنجاح");
-          })
-          .catch((error) => {
-            alert("🚫 خطأ: " + error.message);
-          });
-      };
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9QijUrH298l7FvvDWz21umIEv7d9edBU",
+      authDomain: "wafa3rnalak.firebaseapp.com",
+      projectId: "wafa3rnalak",
+      storageBucket: "wafa3rnalak.firebasestorage.app",
+      messagingSenderId: "122333822215",
+      appId: "1:122333822215:web:60e839b8f67e759ea499a2",
+    };
 
-      window.login = function () {
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-        signInWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            alert("✅ تم تسجيل الدخول بنجاح");
-            // ممكن تنقله على صفحة ثانية
-            // window.location.href = "index.html";
-          })
-          .catch((error) => {
-            alert("🚫 خطأ: " + error.message);
-          });
-      };
-    </script>
-  </body>
+    window.login = function () {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      const message = document.getElementById("login-message");
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          if (user.emailVerified) {
+            message.textContent = "✅ تم تسجيل الدخول بنجاح، سيتم تحويلك...";
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1500);
+          } else {
+            message.textContent = "⚠️ الرجاء تفعيل البريد الإلكتروني أولاً.";
+          }
+        })
+        .catch((error) => {
+          message.textContent = "❌ " + error.message;
+        });
+    };
+  </script>
+</body>
 </html>
