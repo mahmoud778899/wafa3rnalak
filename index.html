@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>وفرنالك - Wafa3rnalak</title>
+  <title>وفرنالك - Wafa3rnalak | موقعك الأول للتوفير</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -19,6 +19,9 @@
       --dashboard: #9b59b6;
       --text: #34495e;
       --popular-sites: #e84393;
+      --games: #ff6b6b;
+      --bots: #54a0ff;
+      --apps: #1dd1a1;
     }
     
     * {
@@ -52,6 +55,22 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+    
+    .logo i {
+      font-size: 1.8rem;
     }
     
     .nav-links {
@@ -69,6 +88,9 @@
       padding: 0.5rem 1rem;
       border-radius: 6px;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     nav a:hover {
@@ -106,6 +128,22 @@
     .hero {
       text-align: center;
       padding: 2rem 1rem;
+      background: linear-gradient(135deg, rgba(42, 107, 204, 0.1), rgba(52, 152, 219, 0.1));
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      z-index: -1;
     }
     
     h1 {
@@ -114,6 +152,9 @@
       font-size: 2.5rem;
       margin: 1.5rem 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     .hero p {
@@ -133,6 +174,18 @@
       font-weight: 600;
       font-size: 1.5rem;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.5);
     }
     
     .popular-sites-title {
@@ -170,11 +223,32 @@
       flex-direction: column;
       align-items: center;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
     }
     
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    
+    .card:hover::before {
+      transform: scaleX(1);
     }
     
     .games-card { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
@@ -265,10 +339,22 @@
       color: var(--primary);
       font-weight: 500;
       text-decoration: none;
+      position: relative;
     }
     
-    .read-more:hover {
-      text-decoration: underline;
+    .read-more::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .read-more:hover::after {
+      width: 100%;
     }
     
     footer {
@@ -316,6 +402,9 @@
       color: #bdc3c7;
       text-decoration: none;
       transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .footer-links a:hover {
@@ -401,6 +490,13 @@
       border-radius: 8px;
       font-family: 'Tajawal', sans-serif;
       font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .input-group input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(42, 107, 204, 0.2);
     }
     
     .login-btn {
@@ -523,6 +619,12 @@
     /* صفحات المحتوى */
     .page {
       display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     .page.active {
@@ -582,6 +684,15 @@
       border-radius: 8px;
       font-family: 'Tajawal', sans-serif;
       font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus, 
+    .form-group textarea:focus, 
+    .form-group select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(42, 107, 204, 0.2);
     }
     
     .form-group textarea {
@@ -788,12 +899,32 @@
 </head>
 <body>
   <nav>
+    <div class="logo">
+      <i class="fas fa-coins"></i>
+      <span>وفرنالك</span>
+    </div>
+    
     <div class="nav-links">
-      <a href="#" class="nav-link active" data-page="home">الرئيسية</a>
-      <a href="#" class="nav-link" data-page="about">من نحن</a>
-      <a href="#" class="nav-link" data-page="contact">تواصل معنا</a>
-      <a href="#" class="nav-link" data-page="privacy">سياسة الخصوصية</a>
-      <a href="#" class="nav_link" data_page="auth">تسجيل الدخول</a>
+      <a href="#" class="nav-link active" data-page="home">
+        <i class="fas fa-home"></i>
+        <span>الرئيسية</span>
+      </a>
+      <a href="#" class="nav-link" data-page="about">
+        <i class="fas fa-users"></i>
+        <span>من نحن</span>
+      </a>
+      <a href="#" class="nav-link" data-page="contact">
+        <i class="fas fa-envelope"></i>
+        <span>تواصل معنا</span>
+      </a>
+      <a href="#" class="nav-link" data-page="privacy">
+        <i class="fas fa-shield-alt"></i>
+        <span>سياسة الخصوصية</span>
+      </a>
+      <a href="#" class="nav-link" data-page="auth">
+        <i class="auth.html"></i>
+        <span>تسجيل الدخول</span>
+      </a>
     </div>
     
     <div class="language-switcher">
@@ -875,6 +1006,141 @@
     </div>
   </div>
   
+  <!-- صفحة من نحن -->
+  <div id="about-page" class="page content-page">
+    <h2 data-i18n="about-us">من نحن</h2>
+    
+    <div class="section-title" data-i18n="our-story">قصتنا</div>
+    <p data-i18n="our-story-desc">
+      وفرنالك هو موقع تم إنشاؤه في عام 2023 بهدف مساعدة المستخدمين على توفير الوقت والمال. 
+      نقدم أفضل العروض، البوتات الذكية، والتطبيقات المميزة التي تسهل حياتك اليومية.
+    </p>
+    
+    <div class="section-title" data-i18n="our-mission">مهمتنا</div>
+    <p data-i18n="our-mission-desc">
+      مهمتنا هي توفير أفضل الحلول التكنولوجية التي تساعدك على توفير المال والوقت، 
+      وتمكينك من تحقيق أقصى استفادة من الموارد المتاحة.
+    </p>
+    
+    <div class="section-title" data-i18n="our-team">فريقنا</div>
+    
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-img">👤</div>
+        <h3 class="member-name">محمد أحمد</h3>
+        <p class="member-position">مؤسس ومدير الموقع</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <div class="member-img">👤</div>
+        <h3 class="member-name">أحمد خالد</h3>
+        <p class="member-position">مطور ويب رئيسي</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <div class="member-img">👤</div>
+        <h3 class="member-name">سارة محمد</h3>
+        <p class="member-position">مديرة المحتوى</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- صفحة سياسة الخصوصية -->
+  <div id="privacy-page" class="page content-page">
+    <h2 data-i18n="privacy-policy">سياسة الخصوصية</h2>
+    
+    <div class="section-title" data-i18n="data-collection">جمع المعلومات</div>
+    <p data-i18n="data-collection-desc">
+      نحن نجمع معلومات محددة عندما تقوم بالتسجيل في موقعنا أو استخدام خدماتنا، 
+      مثل اسمك وعنوان بريدك الإلكتروني ومعلومات الدفع عند الضرورة.
+    </p>
+    
+    <div class="section-title" data-i18n="data-usage">استخدام المعلومات</div>
+    <p data-i18n="data-usage-desc">
+      نستخدم المعلومات التي نجمعها لتقديم خدماتنا وتحسينها، 
+      ولتخصيص تجربتك على موقعنا، ولمعالجة المعاملات المالية، 
+      ولمراسلتك بخصوص تحديثات وعروض خاصة.
+    </p>
+    
+    <div class="section-title" data-i18n="data-protection">حماية المعلومات</div>
+    <p data-i18n="data-protection-desc">
+      نحن نحمي معلوماتك باستخدام إجراءات أمنية متعددة، 
+      بما في ذلك التشفير وجدران الحماية والرقابة المنتظمة. 
+      نحن نلتزم بالمعايير الأمنية لضمان حماية بياناتك.
+    </p>
+    
+    <div class="section-title" data-i18n="cookies">ملفات تعريف الارتباط (كوكيز)</div>
+    <p data-i18n="cookies-desc">
+      نستخدم ملفات تعريف الارتباط لتحسين تجربة المستخدم على موقعنا. 
+      يمكنك التحكم في ملفات تعريف الارتباط من خلال إعدادات متصفحك.
+    </p>
+    
+    <div class="section-title" data-i18n="policy-changes">تغييرات السياسة</div>
+    <p data-i18n="policy-changes-desc">
+      نحن نحتفظ بالحق في تحديث سياسة الخصوصية هذه في أي وقت. 
+      سنقوم بنشر أي تغييرات على هذه الصفحة وإرسال إشعار للمستخدمين إذا كانت التغييرات جوهرية.
+    </p>
+  </div>
+  
+  <!-- صفحة تواصل معنا -->
+  <div id="contact-page" class="page content-page">
+    <h2 data-i18n="contact-us">تواصل معنا</h2>
+    
+    <div class="section-title" data-i18n="contact-info">معلومات التواصل</div>
+    <p>
+      <strong data-i18n="email">البريد الإلكتروني:</strong> mhoda8952@gmail.com<br>
+      <strong data-i18n="phone">الهاتف:</strong> 01142673202<br>
+      <strong data-i18n="telegram">تليجرام:</strong> @wafa3rnalak<br>
+      <strong data-i18n="whatsapp">واتساب:</strong> 01142673202
+    </p>
+    
+    <div class="section-title" data-i18n="contact-form">أرسل رسالة</div>
+    
+    <div class="contact-form">
+      <div class="form-group">
+        <label for="name" data-i18n="name">الاسم الكامل</label>
+        <input type="text" id="name" placeholder="أدخل اسمك الكامل">
+      </div>
+      
+      <div class="form-group">
+        <label for="email" data-i18n="email">البريد الإلكتروني</label>
+        <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني">
+      </div>
+      
+      <div class="form-group">
+        <label for="subject" data-i18n="subject">الموضوع</label>
+        <select id="subject">
+          <option value="support" data-i18n="support">الدعم الفني</option>
+          <option value="partnership" data-i18n="partnership">الشراكات</option>
+          <option value="suggestion" data-i18n="suggestion">مقترحات</option>
+          <option value="other" data-i18n="other">أخرى</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="message" data-i18n="message">الرسالة</label>
+        <textarea id="message" placeholder="أدخل رسالتك هنا..."></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn" data-i18n="send">إرسال الرسالة</button>
+    </div>
+  </div>
+  
   <!-- صفحة مواقع كل الناس بتدور عليها -->
   <div id="popular-sites-page" class="page content-page">
     <h2 data-i18n="popular-sites">مواقع كل الناس بتدور عليها</h2>
@@ -947,8 +1213,6 @@
     </div>
   </div>
   
-  <!-- صفحات أخرى تبقى كما هي (مختصرة للاختصار) -->
-  
   <!-- نافذة الموقع -->
   <div id="site-modal" class="site-modal">
     <div class="site-container">
@@ -964,6 +1228,10 @@
     </div>
   </div>
   
+  <button id="dashboard-btn">
+    <i class="fas fa-cog"></i>
+  </button>
+  
   <footer>
     <div class="footer-content">
       <div class="footer-section">
@@ -974,21 +1242,21 @@
       <div class="footer-section">
         <h3 data-i18n="quick-links">روابط سريعة</h3>
         <ul class="footer-links">
-          <li><a href="#" class="nav-link" data-page="home" data-i18n="home">الرئيسية</a></li>
-          <li><a href="#" class="nav-link" data-page="about" data-i18n="about">من نحن</a></li>
-          <li><a href="#" class="nav-link" data-page="contact" data-i18n="contact">تواصل معنا</a></li>
-          <li><a href="#" class="nav-link" data-page="privacy" data-i18n="privacy">سياسة الخصوصية</a></li>
-          <li><a href="#" class="nav_link" data_page="login" data-i118n="auth">تسجيل الدخول</a></li>
+          <li><a href="#" class="nav-link" data-page="home" data-i18n="home"><i class="fas fa-home"></i> الرئيسية</a></li>
+          <li><a href="#" class="nav-link" data-page="about" data-i18n="about"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="#" class="nav-link" data-page="contact" data-i18n="contact"><i class="fas fa-envelope"></i> تواصل معنا</a></li>
+          <li><a href="#" class="nav-link" data-page="privacy" data-i18n="privacy"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+          <li><a href="#" class="nav-link" data-page="auth" data-i18n="auth"><i class="fas fa-user-lock"></i> تسجيل الدخول</a></li>
         </ul>
       </div>
       
       <div class="footer-section">
         <h3 data-i18n="contact-info">معلومات التواصل</h3>
         <ul class="footer-links">
-          <li><i class="fas fa-envelope"></i> mhoda8952@gmail.com</li>
-          <li><i class="fas fa-phone"></i> 01142673202</li>
-          <li><i class="fab fa-telegram"></i> @wafa3rnalak</li>
-          <li><i class="fab fa-whatsapp"></i> 01142673202</li>
+          <li><a href="mailto:mhoda8952@gmail.com"><i class="fas fa-envelope"></i> mhoda8952@gmail.com</a></li>
+          <li><a href="tel:01142673202"><i class="fas fa-phone"></i> 01142673202</a></li>
+          <li><a href="https://t.me/wafa3rnalak" target="_blank"><i class="fab fa-telegram"></i> @wafa3rnalak</a></li>
+          <li><a href="https://wa.me/201142673202" target="_blank"><i class="fab fa-whatsapp"></i> 01142673202</a></li>
         </ul>
       </div>
     </div>
@@ -997,6 +1265,27 @@
       <p>© 2025 <span data-i18n="site-name">وفرنالك</span> - <span data-i18n="rights">جميع الحقوق محفوظة</span></p>
     </div>
   </footer>
+
+  <!-- نافذة تسجيل الدخول -->
+  <div id="login-modal">
+    <div class="login-container">
+      <h2 data-i18n="admin-login">تسجيل الدخول للوحة الإدارة</h2>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="username" data-i18n="username">اسم المستخدم</label>
+          <input type="text" id="username" required>
+        </div>
+        
+        <div class="input-group">
+          <label for="password" data-i18n="password">كلمة المرور</label>
+          <input type="password" id="password" required>
+        </div>
+        
+        <button type="submit" class="login-btn" data-i18n="login">تسجيل الدخول</button>
+      </form>
+      <div class="error-message" id="error-message" data-i18n="login-error">اسم المستخدم أو كلمة المرور غير صحيحة!</div>
+    </div>
+  </div>
 
   <script>
     // بيانات المالك
@@ -1131,7 +1420,52 @@
         "site9-desc": "منصة لمشاركة الصور والفيديوهات",
         "site-info": "معلومات عن الموقع",
         "visit-site": "زيارة الموقع",
-        // باقي الترجمات تبقى كما هي
+        "about-us": "من نحن",
+        "our-story": "قصتنا",
+        "our-story-desc": "وفرنالك هو موقع تم إنشاؤه في عام 2023 بهدف مساعدة المستخدمين على توفير الوقت والمال.",
+        "our-mission": "مهمتنا",
+        "our-mission-desc": "مهمتنا هي توفير أفضل الحلول التكنولوجية التي تساعدك على توفير المال والوقت.",
+        "our-team": "فريقنا",
+        "privacy-policy": "سياسة الخصوصية",
+        "data-collection": "جمع المعلومات",
+        "data-collection-desc": "نحن نجمع معلومات محددة عندما تقوم بالتسجيل في موقعنا أو استخدام خدماتنا.",
+        "data-usage": "استخدام المعلومات",
+        "data-usage-desc": "نستخدم المعلومات التي نجمعها لتقديم خدماتنا وتحسينها، ولتخصيص تجربتك على موقعنا.",
+        "data-protection": "حماية المعلومات",
+        "data-protection-desc": "نحن نحمي معلوماتك باستخدام إجراءات أمنية متعددة، بما في ذلك التشفير وجدران الحماية.",
+        "cookies": "ملفات تعريف الارتباط (كوكيز)",
+        "cookies-desc": "نستخدم ملفات تعريف الارتباط لتحسين تجربة المستخدم على موقعنا.",
+        "policy-changes": "تغييرات السياسة",
+        "policy-changes-desc": "نحن نحتفظ بالحق في تحديث سياسة الخصوصية هذه في أي وقت.",
+        "contact-us": "تواصل معنا",
+        "contact-info": "معلومات التواصل",
+        "contact-form": "أرسل رسالة",
+        "name": "الاسم الكامل",
+        "email": "البريد الإلكتروني",
+        "subject": "الموضوع",
+        "support": "الدعم الفني",
+        "partnership": "الشراكات",
+        "suggestion": "مقترحات",
+        "other": "أخرى",
+        "message": "الرسالة",
+        "send": "إرسال الرسالة",
+        "phone": "الهاتف",
+        "telegram": "تليجرام",
+        "whatsapp": "واتساب",
+        "admin-login": "تسجيل الدخول للوحة الإدارة",
+        "username": "اسم المستخدم",
+        "password": "كلمة المرور",
+        "login": "تسجيل الدخول",
+        "login-error": "اسم المستخدم أو كلمة المرور غير صحيحة!",
+        "about-text": "نحن نساعدك على توفير وقتك ومالك من خلال أفضل العروض، البوتات الذكية، والتطبيقات المميزة",
+        "quick-links": "روابط سريعة",
+        "home": "الرئيسية",
+        "about": "من نحن",
+        "contact": "تواصل معنا",
+        "privacy": "سياسة الخصوصية",
+        "auth": "تسجيل الدخول",
+        "site-name": "وفرنالك",
+        "rights": "جميع الحقوق محفوظة"
       },
       en: {
         "page-title": "SaveForYou - Wafa3rnalak",
@@ -1179,7 +1513,52 @@
         "site9-desc": "Platform for sharing photos and videos",
         "site-info": "About the Site",
         "visit-site": "Visit Site",
-        // باقي الترجمات تبقى كما هي
+        "about-us": "About Us",
+        "our-story": "Our Story",
+        "our-story-desc": "Wafa3rnalak is a website created in 2023 with the aim of helping users save time and money.",
+        "our-mission": "Our Mission",
+        "our-mission-desc": "Our mission is to provide the best technological solutions that help you save money and time.",
+        "our-team": "Our Team",
+        "privacy-policy": "Privacy Policy",
+        "data-collection": "Data Collection",
+        "data-collection-desc": "We collect specific information when you register on our site or use our services.",
+        "data-usage": "Data Usage",
+        "data-usage-desc": "We use the information we collect to provide and improve our services, and to personalize your experience on our site.",
+        "data-protection": "Data Protection",
+        "data-protection-desc": "We protect your information using multiple security measures, including encryption and firewalls.",
+        "cookies": "Cookies",
+        "cookies-desc": "We use cookies to improve the user experience on our site.",
+        "policy-changes": "Policy Changes",
+        "policy-changes-desc": "We reserve the right to update this privacy policy at any time.",
+        "contact-us": "Contact Us",
+        "contact-info": "Contact Information",
+        "contact-form": "Send a Message",
+        "name": "Full Name",
+        "email": "Email",
+        "subject": "Subject",
+        "support": "Technical Support",
+        "partnership": "Partnerships",
+        "suggestion": "Suggestions",
+        "other": "Other",
+        "message": "Message",
+        "send": "Send Message",
+        "phone": "Phone",
+        "telegram": "Telegram",
+        "whatsapp": "WhatsApp",
+        "admin-login": "Admin Dashboard Login",
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "login-error": "Incorrect username or password!",
+        "about-text": "We help you save your time and money through the best offers, smart bots, and premium apps",
+        "quick-links": "Quick Links",
+        "home": "Home",
+        "about": "About Us",
+        "contact": "Contact Us",
+        "privacy": "Privacy Policy",
+        "auth": "Login",
+        "site-name": "Wafa3rnalak",
+        "rights": "All Rights Reserved"
       }
     };
     
