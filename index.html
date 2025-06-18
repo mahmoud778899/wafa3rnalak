@@ -4,24 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>وفرنالك - Wafa3rnalak | موقعك الأول للتوفير</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- بيانات منظمة لتحسين SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "وفرنالك",
+    "url": "https://wafa3rnalak.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://wafa3rnalak.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <meta name="description" content="موقع وفرنالك يوفر لك أفضل العروض، البوتات الذكية، والتطبيقات المميزة لتوفير وقتك ومالك. اكتشف عروض الألعاب، بوتات التليجرام، وتطبيقات التوفير.">
+  <meta name="keywords" content="توفير, عروض, بوتات تليجرام, تطبيقات, ألعاب, مواقع, وفرنالك">
+  <meta name="author" content="وفرنالك">
+  
+  <!-- خطوط جديدة أكثر احترافية -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root {
       --primary: #2a6bcc;
-      --secondary: #3498db;
-      --accent: #e67e22;
+      --secondary: #4a9dff;
+      --accent: #ff7b54;
       --light: #f8f9fa;
       --dark: #2c3e50;
-      --success: #27ae60;
-      --warning: #f39c12;
-      --danger: #e74c3c;
-      --dashboard: #9b59b6;
+      --light-dark: #4a5568;
+      --success: #28a745;
+      --warning: #ffc107;
+      --danger: #dc3545;
+      --dashboard: #6f42c1;
       --text: #34495e;
-      --popular-sites: #e84393;
-      --games: #ff6b6b;
-      --bots: #54a0ff;
-      --apps: #1dd1a1;
+      --background: #f0f5ff;
+      --card-bg: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      
+      /* ألوان وضع الليل */
+      --night-primary: #3498db;
+      --night-secondary: #2980b9;
+      --night-dark: #1a252f;
+      --night-light: #2c3e50;
+      --night-text: #ecf0f1;
+      --night-background: #1a252f;
+      --night-card-bg: #2c3e50;
+      --night-shadow: rgba(0, 0, 0, 0.3);
+    }
+    
+    /* وضع الليل */
+    body.night-mode {
+      --primary: var(--night-primary);
+      --secondary: var(--night-secondary);
+      --dark: var(--night-dark);
+      --light: var(--night-light);
+      --text: var(--night-text);
+      --background: var(--night-background);
+      --card-bg: var(--night-card-bg);
+      --shadow: var(--night-shadow);
     }
     
     * {
@@ -31,8 +76,8 @@
     }
     
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      font-family: 'Cairo', sans-serif;
+      background: var(--background);
       color: var(--text);
       padding: 1rem;
       line-height: 1.8;
@@ -40,24 +85,22 @@
       margin: 0 auto;
       position: relative;
       padding-bottom: 100px;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
     
-    /* شريط التنقل */
+    /* شريط التنقل الجديد - غير ثابت */
     nav {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       padding: 1.2rem;
       text-align: center;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px var(--shadow);
       margin-bottom: 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      position: sticky;
-      top: 10px;
-      z-index: 100;
+      transition: var(--transition);
     }
     
     .logo {
@@ -67,10 +110,17 @@
       color: white;
       font-weight: 700;
       font-size: 1.4rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      text-decoration: none;
     }
     
     .logo i {
       font-size: 1.8rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover i {
+      transform: rotate(15deg);
     }
     
     .nav-links {
@@ -87,21 +137,59 @@
       font-size: 1.1rem;
       padding: 0.5rem 1rem;
       border-radius: 6px;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       display: flex;
       align-items: center;
       gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: white;
+      transition: width 0.3s ease;
     }
     
     nav a:hover {
       background: rgba(255,255,255,0.15);
-      text-decoration: none;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
     
-    .language-switcher {
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    .nav-controls {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    
+    .theme-switcher, .hide-nav-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .theme-switcher:hover, .hide-nav-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.1);
     }
     
     .lang-btn {
@@ -112,7 +200,7 @@
       border-radius: 30px;
       cursor: pointer;
       font-weight: 500;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
     
     .lang-btn:hover {
@@ -127,12 +215,13 @@
     /* المحتوى الرئيسي */
     .hero {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       background: linear-gradient(135deg, rgba(42, 107, 204, 0.1), rgba(52, 152, 219, 0.1));
       border-radius: 16px;
       margin-bottom: 2rem;
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(42, 107, 204, 0.15);
     }
     
     .hero::before {
@@ -142,13 +231,13 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
       z-index: -1;
     }
     
     h1 {
       color: var(--dark);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 2.5rem;
       margin: 1.5rem 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
@@ -161,21 +250,22 @@
       font-size: 1.2rem;
       max-width: 800px;
       margin: 0 auto;
-      color: #555;
+      color: var(--light-dark);
     }
     
     .section-title {
-      background: linear-gradient(to right, var(--warning), var(--accent));
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
-      padding: 0.8rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 8px;
       text-align: center;
-      margin: 2rem 0 1.5rem;
+      margin: 2.5rem 0 1.5rem;
       font-weight: 600;
       font-size: 1.5rem;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 8px var(--shadow);
       position: relative;
       overflow: hidden;
+      display: inline-block;
     }
     
     .section-title::after {
@@ -189,7 +279,7 @@
     }
     
     .popular-sites-title {
-      background: linear-gradient(to right, var(--popular-sites), #fd79a8);
+      background: linear-gradient(to right, var(--primary), var(--accent));
       color: white;
       padding: 0.8rem;
       border-radius: 8px;
@@ -197,92 +287,136 @@
       margin: 2rem 0 1.5rem;
       font-weight: 600;
       font-size: 1.5rem;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 8px var(--shadow);
     }
     
+    /* تصميم البطاقات الجديد */
     .cards-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.8rem;
-      margin: 2.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
     }
     
     .card {
-      flex: 1 1 280px;
-      text-align: center;
-      background: white;
-      padding: 2rem;
+      background: var(--card-bg);
       border-radius: 16px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 30px;
+      text-align: center;
+      transition: var(--transition);
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      z-index: 1;
+      box-shadow: 0 5px 15px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px var(--shadow);
     }
     
     .card::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 5px;
-      background: var(--primary);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-      z-index: -1;
     }
     
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    .games-card::before {
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
     }
     
-    .card:hover::before {
-      transform: scaleX(1);
+    .bot-card::before {
+      background: linear-gradient(90deg, #1d976c, #93f9b9);
     }
     
-    .games-card { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
-    .bot-card { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
-    .apps-card { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
-    .dashboard-card { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
-    .popular-sites-card { background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%); }
+    .apps-card::before {
+      background: linear-gradient(90deg, #2193b0, #6dd5ed);
+    }
+    
+    .popular-sites-card::before {
+      background: linear-gradient(90deg, #e84393, #fd79a8);
+    }
     
     .card-icon {
       font-size: 3.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 20px;
       display: block;
+      transition: transform 0.3s ease;
+      color: var(--primary);
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(5deg);
     }
     
     .card-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 15px;
       color: var(--dark);
     }
     
     .card-description {
-      color: #555;
-      font-size: 1rem;
-      margin-top: auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      color: var(--light-dark);
+    }
+    
+    .card-link {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 600;
+      position: relative;
+      padding-right: 20px;
+    }
+    
+    .card-link:after {
+      content: "→";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    
+    .card-link:hover {
+      color: var(--secondary);
+    }
+    
+    .card-link:hover:after {
+      transform: translateY(-50%) translateX(5px);
     }
     
     .offer-box {
-      background: white;
+      background: var(--card-bg);
       padding: 1.5rem;
       margin: 1.5rem 0;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 12px var(--shadow);
       border-left: 4px solid var(--accent);
+      transition: var(--transition);
+    }
+    
+    .offer-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--shadow);
     }
     
     .offer-box h3 {
@@ -299,15 +433,17 @@
     }
     
     .article-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .article-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--shadow);
     }
     
     .article-img {
@@ -330,7 +466,7 @@
     }
     
     .article-content p {
-      color: #666;
+      color: var(--light-dark);
       margin-bottom: 1rem;
     }
     
@@ -340,12 +476,13 @@
       font-weight: 500;
       text-decoration: none;
       position: relative;
+      padding-bottom: 2px;
     }
     
     .read-more::after {
       content: "";
       position: absolute;
-      bottom: -2px;
+      bottom: 0;
       right: 0;
       width: 0;
       height: 2px;
@@ -388,6 +525,7 @@
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
       border-bottom: 2px solid var(--secondary);
+      font-weight: 600;
     }
     
     .footer-links {
@@ -415,9 +553,10 @@
       margin-top: 2rem;
       padding-top: 1.5rem;
       border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
     }
     
-    /* زر لوحة الإدارة الأخضر */
+    /* زر لوحة الإدارة */
     #dashboard-btn {
       position: fixed;
       bottom: 30px;
@@ -435,7 +574,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
     
     #dashboard-btn:hover {
@@ -443,342 +582,129 @@
       box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
     }
     
-    /* نافذة تسجيل الدخول للوحة الإدارة */
-    #login-modal {
-      display: none;
+    /* زر العودة إلى الأعلى */
+    #back-to-top {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 10000;
+      bottom: 100px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: center;
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
     }
     
-    .login-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
     }
     
-    .login-container h2 {
-      color: var(--dashboard);
-      margin-top: 0;
-    }
-    
-    .input-group {
-      margin-bottom: 1.5rem;
-      text-align: right;
-    }
-    
-    .input-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    
-    .input-group input {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    
-    .input-group input:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(42, 107, 204, 0.2);
-    }
-    
-    .login-btn {
-      background: linear-gradient(to right, var(--dashboard), #8e44ad);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 500;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-    
-    .login-btn:hover {
+    #back-to-top:hover {
+      background: var(--secondary);
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
     }
     
-    .error-message {
-      color: var(--danger);
-      margin-top: 1rem;
-      display: none;
-    }
-    
-    /* لوحة الإدارة */
-    .dashboard-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-    }
-    
-    .dashboard-header {
-      background: linear-gradient(to right, var(--dashboard), #8e44ad);
+    /* إشعارات */
+    .notification {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--success);
       color: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    
-    .dashboard-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .stat-box {
-      flex: 1 1 200px;
-      background: var(--light);
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
-    
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--dashboard);
-      margin: 0.5rem 0;
-    }
-    
-    .stat-label {
-      color: var(--dark);
-      font-weight: 500;
-    }
-    
-    .dashboard-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    
-    .action-btn {
-      flex: 1 1 250px;
-      background: var(--light);
-      border: 2px solid var(--dashboard);
-      color: var(--dashboard);
-      padding: 1.5rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    
-    .action-btn:hover {
-      background: var(--dashboard);
-      color: white;
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(155, 89, 182, 0.3);
-    }
-    
-    .logout-btn {
-      background: var(--danger);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
+      padding: 15px 25px;
       border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 10000;
+      transition: transform 0.5s ease;
       font-weight: 500;
-      cursor: pointer;
-      margin-top: 2rem;
-      transition: all 0.3s ease;
     }
     
-    .logout-btn:hover {
-      background: #c0392b;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    .notification.show {
+      transform: translateX(-50%) translateY(0);
     }
     
     /* صفحات المحتوى */
     .page {
       display: none;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     
     .page.active {
       display: block;
+      animation: fadeIn 0.5s ease;
     }
     
     .content-page {
-      background: white;
+      background: var(--card-bg);
       padding: 2rem;
       border-radius: 16px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-      margin: 2rem 0;
+      box-shadow: 0 5px 15px var(--shadow);
+      margin: 1.5rem 0;
     }
     
-    .content-page h2 {
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 2px solid var(--secondary);
+    .sub-page-content {
+      margin-top: 2rem;
     }
     
-    .content-page p {
-      margin-bottom: 1.2rem;
-      line-height: 1.8;
-    }
-    
-    .content-page ul {
-      padding-right: 2rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .content-page li {
-      margin-bottom: 0.8rem;
-    }
-    
-    .contact-form {
-      max-width: 600px;
-      margin: 2rem auto;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    
-    .form-group input, 
-    .form-group textarea, 
-    .form-group select {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    
-    .form-group input:focus, 
-    .form-group textarea:focus, 
-    .form-group select:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(42, 107, 204, 0.2);
-    }
-    
-    .form-group textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
-    .submit-btn {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
+    .back-btn {
+      background: var(--secondary);
       color: white;
       border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 500;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
       cursor: pointer;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-    
-    .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(42, 107, 204, 0.4);
-    }
-    
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .team-member {
-      background: var(--light);
-      border-radius: 12px;
-      overflow: hidden;
-      text-align: center;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
-    }
-    
-    .team-member:hover {
-      transform: translateY(-5px);
-    }
-    
-    .member-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #3498db, #2c3e50);
-      margin: 0 auto 1rem;
-      display: flex;
+      font-weight: 600;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2.5rem;
+      gap: 8px;
+      margin: 1rem 0;
+      transition: var(--transition);
     }
     
-    .member-name {
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-    
-    .member-position {
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-    
-    .social-links a {
-      color: var(--primary);
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-      color: var(--accent);
+    .back-btn:hover {
+      background: var(--primary);
       transform: translateY(-3px);
+    }
+    
+    /* روابط فرعية في مربع الأقسام */
+    .sub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    
+    .sub-link {
+      background: rgba(42, 107, 204, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .sub-link:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    /* رسوم متحركة */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     /* التصميم المتجاوب */
@@ -793,7 +719,7 @@
         justify-content: center;
       }
       
-      .language-switcher {
+      .nav-controls {
         justify-content: center;
         width: 100%;
       }
@@ -803,130 +729,108 @@
       }
       
       .cards-container {
-        gap: 1rem;
+        grid-template-columns: 1fr;
       }
       
-      .card {
-        flex: 1 1 100%;
-      }
-      
-      .dashboard-stats, .dashboard-actions {
-        flex-direction: column;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .footer-section {
-        text-align: center;
-      }
-      
-      #dashboard-btn {
+      #dashboard-btn, #back-to-top {
         bottom: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
         font-size: 20px;
       }
+      
+      #back-to-top {
+        bottom: 90px;
+      }
+      
+      .content-page {
+        padding: 1.5rem;
+      }
     }
     
-    /* نافذة الموقع */
-    .site-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.8);
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
+    @media (max-width: 480px) {
+      .hero {
+        padding: 2rem 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+        padding: 0.6rem 1.2rem;
+      }
+      
+      .card-title {
+        font-size: 1.5rem;
+      }
+      
+      .footer-section {
+        min-width: 100%;
+        text-align: center;
+      }
     }
     
-    .site-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-      position: relative;
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: var(--danger);
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-    
-    .site-icon {
-      font-size: 4rem;
-      margin: 1rem 0;
-      color: var(--popular-sites);
-    }
-    
-    .visit-btn {
-      display: inline-block;
-      background: linear-gradient(to right, var(--popular-sites), #fd79a8);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    .visit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
+    /* تحسينات للطباعة */
+    @media print {
+      nav, #dashboard-btn, #back-to-top {
+        display: none;
+      }
+      
+      body {
+        padding: 0;
+        background: white;
+        color: black;
+      }
+      
+      .hero, .offer-box, .card {
+        box-shadow: none;
+        border: none;
+      }
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="logo">
+    <a href="#" class="logo" onclick="showPage('home')">
       <i class="fas fa-coins"></i>
       <span>وفرنالك</span>
-    </div>
+    </a>
     
     <div class="nav-links">
-      <a href="#" class="nav-link active" data-page="home">
+      <a href="#" class="nav-link active" data-page="home" onclick="showPage('home')">
         <i class="fas fa-home"></i>
         <span>الرئيسية</span>
       </a>
-      <a href="#" class="nav-link" data-page="about">
+      <a href="#" class="nav-link" data-page="about" onclick="showPage('about')">
         <i class="fas fa-users"></i>
         <span>من نحن</span>
       </a>
-      <a href="#" class="nav-link" data-page="contact">
+      <a href="#" class="nav-link" data-page="contact" onclick="showPage('contact')">
         <i class="fas fa-envelope"></i>
         <span>تواصل معنا</span>
       </a>
-      <a href="#" class="nav-link" data-page="privacy">
+      <a href="#" class="nav-link" data-page="privacy" onclick="showPage('privacy')">
         <i class="fas fa-shield-alt"></i>
         <span>سياسة الخصوصية</span>
       </a>
-      <li><a href="auth.html">تسجيل الدخول</a></li>
-      
+      <a href="#" class="nav-link" data-page="sitemap" onclick="showPage('sitemap')">
+        <i class="fas fa-sitemap"></i>
+        <span>خريطة الموقع</span>
+      </a>
+    </div>
     
-    <div class="language-switcher">
-      <button class="lang-btn active" data-lang="ar">العربية</button>
-      <button class="lang-btn" data-lang="en">English</button>
+    <div class="nav-controls">
+      <button class="lang-btn active" data-lang="ar" onclick="changeLanguage('ar')">العربية</button>
+      <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">English</button>
+      
+      <!-- زر تغيير السمة -->
+      <button class="theme-switcher" id="theme-switcher" title="تبديل السمة">
+        <i class="fas fa-moon"></i>
+      </button>
+      
+      <!-- زر إخفاء شريط التنقل -->
+      <button class="hide-nav-btn" id="hide-nav-btn" title="إخفاء شريط التنقل">
+        <i class="far fa-eye"></i>
+      </button>
     </div>
   </nav>
 
@@ -938,61 +842,68 @@
     </div>
     
     <div class="section-title" data-i18n="discover">اكتشف أقسامنا المميزة</div>
-    
-    <div class="cards-container">
-      <div class="card games-card" onclick="showPage('games')">
+   <div class="cards-container">
+    <!-- قسم الألعاب مع رابط إلى صفحة فرعية -->
+    <a href="games.html" class="card games-card">
         <span class="card-icon">🎮</span>
-        <div class="card-title" data-i18n="games">قسم الألعاب</div>
-        <p class="card-description" data-i18n="games-desc">ألعاب مجانية ومدفوعة بخصومات تصل إلى 90%</p>
-      </div>
-      
-      <div class="card bot-card" onclick="showPage('bot')">
-        <span class="card-icon">🤖</span>
-        <div class="card-title" data-i18n="bots">بوتات تليجرام</div>
-        <p class="card-description" data-i18n="bots-desc">بوتات ذكية توفر لك الوقت والجهد في مختلف المهام</p>
-      </div>
-      
-      <div class="card apps-card" onclick="showPage('apps')">
-        <span class="card-icon">💳</span>
-        <div class="card-title" data-i18n="apps">تطبيقات موصى بها</div>
-        <p class="card-description" data-i18n="apps-desc">تطبيقات تساعدك في توفير المال وتنظيم حياتك</p>
-      </div>
-      
-      <!-- البطاقة الجديدة: مواقع كل الناس بتدور عليها -->
-      <div class="card popular-sites-card" onclick="showPage('popular-sites')">
-        <span class="card-icon">🌐</span>
-        <div class="card-title" data-i18n="popular-sites">مواقع كل الناس بتدور عليها</div>
-        <p class="card-description" data-i18n="popular-sites-desc">أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية</p>
-      </div>
-    </div>
+        <div class="card-title">قسم الألعاب</div>
+        <p class="card-description">ألعاب مجانية ومدفوعة بخصومات تصل إلى 90%</p>
+        <span class="card-link">تصفح الألعاب <i class="fas fa-arrow-left"></i></span>
+    </a>
     
-    <div class="section-title" data-i18n="articles">📚 مقالات مميزة</div>
+    <!-- قسم البوتات مع رابط إلى صفحة فرعية -->
+    <a href="bots.html" class="card bot-card">
+        <span class="card-icon">🤖</span>
+        <div class="card-title">بوتات تليجرام</div>
+        <p class="card-description">بوتات ذكية توفر لك الوقت والجهد في مختلف المهام</p>
+        <span class="card-link">اكتشف البوتات <i class="fas fa-arrow-left"></i></span>
+    </a>
+    
+    <!-- قسم التطبيقات مع رابط إلى صفحة فرعية -->
+    <a href="apps1.html" class="card apps-card">
+        <span class="card-icon">💳</span>
+        <div class="card-title">تطبيقات موصى بها</div>
+        <p class="card-description">تطبيقات تساعدك في توفير المال وتنظيم حياتك</p>
+        <span class="card-link">شاهد التطبيقات <i class="fas fa-arrow-left"></i></span>
+    </a>
+</div>    
+    <!-- قسم المقالات المربحة -->
+    <div class="section-title" data-i18n="money-articles">💸 مقالات تدر الربح من جوجل أدسنس</div>
     
     <div class="articles-grid">
+      <!-- مقالة 1 -->
       <div class="article-card">
-        <div class="article-img">📱</div>
+        <div class="article-img" style="background: linear-gradient(45deg, #27ae60, #2ecc71);">
+          <i class="fas fa-chart-line" style="font-size: 3rem; color: white;"></i>
+        </div>
         <div class="article-content">
-          <h4 data-i18n="article1-title">أفضل 10 تطبيقات لتوفير المال في 2023</h4>
-          <p data-i18n="article1-desc">اكتشف التطبيقات التي ستساعدك على توفير المال وإدارة ميزانيتك بشكل أفضل</p>
-          <a href="#" class="read-more" data-i18n="read-more">قراءة المزيد</a>
+          <h4>أفضل 5 طرق لربح المال من جوجل أدسنس</h4>
+          <p>دليل شامل يوضح كيفية تحقيق دخل شهري ثابت من الإعلانات عبر موقعك</p>
+          <a href="#" class="read-more" onclick="showArticle('article1')">قراءة المزيد</a>
         </div>
       </div>
       
+      <!-- مقالة 2 -->
       <div class="article-card">
-        <div class="article-img">🤖</div>
+        <div class="article-img" style="background: linear-gradient(45deg, #3498db, #2980b9);">
+          <i class="fas fa-mobile-alt" style="font-size: 3rem; color: white;"></i>
+        </div>
         <div class="article-content">
-          <h4 data-i18n="article2-title">كيف تستخدم بوتات التليجرام لتوفير الوقت</h4>
-          <p data-i18n="article2-desc">دليل شامل لأفضل بوتات التليجرام التي توفر لك ساعات من العمل اليومي</p>
-          <a href="#" class="read-more" data-i18n="read-more">قراءة المزيد</a>
+          <h4>تحسين تجربة الجوال لزيادة أرباح أدسنس</h4>
+          <p>أهمية التصميم المتجاوب وتأثيره المباشر على دخل الإعلانات</p>
+          <a href="#" class="read-more" onclick="showArticle('article2')">قراءة المزيد</a>
         </div>
       </div>
       
+      <!-- مقالة 3 -->
       <div class="article-card">
-        <div class="article-img">🎮</div>
+        <div class="article-img" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);">
+          <i class="fas fa-search" style="font-size: 3rem; color: white;"></i>
+        </div>
         <div class="article-content">
-          <h4 data-i18n="article3-title">ألعاب مجانية يجب أن تجربها هذا الشهر</h4>
-          <p data-i18n="article3-desc">قائمة بأفضل الألعاب المجانية المتاحة الآن على مختلف المنصات</p>
-          <a href="#" class="read-more" data-i18n="read-more">قراءة المزيد</a>
+          <h4>أخطاء شائعة تمنع قبول موقعك في أدسنس</h4>
+          <p>تجنب هذه الأخطاء لتحصل على موافقة فورية من جوجل</p>
+          <a href="#" class="read-more" onclick="showArticle('article3')">قراءة المزيد</a>
         </div>
       </div>
     </div>
@@ -1000,11 +911,19 @@
     <div class="offer-box">
       <h3 data-i18n="weekly-offers">أفضل العروض هذا الأسبوع</h3>
       <p data-i18n="weekly-offers-desc">اكتشف أحدث العروض والتخفيضات الحصرية من متجرنا الإلكتروني</p>
+      <div class="progress-bar" style="height: 10px; background: #e0e0e0; border-radius: 5px; margin-top: 15px; overflow: hidden;">
+        <div class="progress" style="height: 100%; background: var(--accent); width: 65%;"></div>
+      </div>
+      <p style="margin-top: 10px; font-size: 0.9rem; color: var(--light-dark);">ينتهي خلال 3 أيام</p>
     </div>
   </div>
   
   <!-- صفحة من نحن -->
   <div id="about-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
     <h2 data-i18n="about-us">من نحن</h2>
     
     <div class="section-title" data-i18n="our-story">قصتنا</div>
@@ -1019,46 +938,34 @@
       وتمكينك من تحقيق أقصى استفادة من الموارد المتاحة.
     </p>
     
-    <div class="section-title" data-i18n="our-team">فريقنا</div>
-    
-    <div class="team-grid">
-      <div class="team-member">
-        <div class="member-img">👤</div>
-        <h3 class="member-name">محمد أحمد</h3>
-        <p class="member-position">مؤسس ومدير الموقع</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
+    <div class="section-title">فريق العمل</div>
+    <div class="cards-container">
+      <div class="card">
+        <span class="card-icon"><i class="fas fa-user"></i></span>
+        <div class="card-title">محمد أحمد</div>
+        <p class="card-description">مؤسس ومدير الموقع</p>
       </div>
       
-      <div class="team-member">
-        <div class="member-img">👤</div>
-        <h3 class="member-name">أحمد خالد</h3>
-        <p class="member-position">مطور ويب رئيسي</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
+      <div class="card">
+        <span class="card-icon"><i class="fas fa-code"></i></span>
+        <div class="card-title">علي محمود</div>
+        <p class="card-description">مطور الويب والتصميم</p>
       </div>
       
-      <div class="team-member">
-        <div class="member-img">👤</div>
-        <h3 class="member-name">سارة محمد</h3>
-        <p class="member-position">مديرة المحتوى</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
+      <div class="card">
+        <span class="card-icon"><i class="fas fa-search"></i></span>
+        <div class="card-title">سارة خالد</div>
+        <p class="card-description">مسؤولة المحتوى والبحث</p>
       </div>
     </div>
   </div>
   
   <!-- صفحة سياسة الخصوصية -->
   <div id="privacy-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
     <h2 data-i18n="privacy-policy">سياسة الخصوصية</h2>
     
     <div class="section-title" data-i18n="data-collection">جمع المعلومات</div>
@@ -1074,28 +981,19 @@
       ولمراسلتك بخصوص تحديثات وعروض خاصة.
     </p>
     
-    <div class="section-title" data-i18n="data-protection">حماية المعلومات</div>
-    <p data-i18n="data-protection-desc">
-      نحن نحمي معلوماتك باستخدام إجراءات أمنية متعددة، 
-      بما في ذلك التشفير وجدران الحماية والرقابة المنتظمة. 
-      نحن نلتزم بالمعايير الأمنية لضمان حماية بياناتك.
-    </p>
-    
-    <div class="section-title" data-i18n="cookies">ملفات تعريف الارتباط (كوكيز)</div>
-    <p data-i18n="cookies-desc">
-      نستخدم ملفات تعريف الارتباط لتحسين تجربة المستخدم على موقعنا. 
-      يمكنك التحكم في ملفات تعريف الارتباط من خلال إعدادات متصفحك.
-    </p>
-    
-    <div class="section-title" data-i18n="policy-changes">تغييرات السياسة</div>
-    <p data-i18n="policy-changes-desc">
-      نحن نحتفظ بالحق في تحديث سياسة الخصوصية هذه في أي وقت. 
-      سنقوم بنشر أي تغييرات على هذه الصفحة وإرسال إشعار للمستخدمين إذا كانت التغييرات جوهرية.
+    <div class="section-title">مشاركة المعلومات</div>
+    <p>
+      نحن لا نبيع أو نؤجر أو نشارك معلوماتك الشخصية مع أطراف ثالثة لأغراض تسويقية دون موافقتك الصريحة، 
+      إلا عند الضرورة لتقديم الخدمات التي طلبتها أو عند الالتزام بالقوانين واللوائح.
     </p>
   </div>
   
   <!-- صفحة تواصل معنا -->
   <div id="contact-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
     <h2 data-i18n="contact-us">تواصل معنا</h2>
     
     <div class="section-title" data-i18n="contact-info">معلومات التواصل</div>
@@ -1120,114 +1018,192 @@
       </div>
       
       <div class="form-group">
-        <label for="subject" data-i18n="subject">الموضوع</label>
-        <select id="subject">
-          <option value="support" data-i18n="support">الدعم الفني</option>
-          <option value="partnership" data-i18n="partnership">الشراكات</option>
-          <option value="suggestion" data-i18n="suggestion">مقترحات</option>
-          <option value="other" data-i18n="other">أخرى</option>
-        </select>
-      </div>
-      
-      <div class="form-group">
         <label for="message" data-i18n="message">الرسالة</label>
-        <textarea id="message" placeholder="أدخل رسالتك هنا..."></textarea>
+        <textarea id="message" placeholder="أدخل رسالتك هنا..." rows="5"></textarea>
       </div>
       
-      <button type="submit" class="submit-btn" data-i18n="send">إرسال الرسالة</button>
+      <button type="submit" class="submit-btn" onclick="submitContactForm()" data-i18n="send">إرسال الرسالة</button>
+    </div>
+    
+    <div class="section-title">موقعنا</div>
+    <div id="map" style="height: 300px; background: #f0f5ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 1.5rem 0;">
+      <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: var(--primary);"></i>
+      <p style="margin-right: 15px;">القاهرة، مصر</p>
     </div>
   </div>
   
-  <!-- صفحة مواقع كل الناس بتدور عليها -->
+  <!-- صفحة خريطة الموقع -->
+  <div id="sitemap-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
+    <h2 data-i18n="sitemap">خريطة الموقع</h2>
+    
+    <div class="section-title">الصفحات الرئيسية</div>
+    <ul class="sitemap-list">
+      <li><a href="#" onclick="showPage('home')">الصفحة الرئيسية</a></li>
+      <li><a href="#" onclick="showPage('about')">من نحن</a></li>
+      <li><a href="#" onclick="showPage('contact')">تواصل معنا</a></li>
+      <li><a href="#" onclick="showPage('privacy')">سياسة الخصوصية</a></li>
+    </ul>
+    
+    <div class="section-title">الأقسام</div>
+    <ul class="sitemap-list">
+      <li><a href="#" onclick="showPage('games')">قسم الألعاب</a></li>
+      <li><a href="#" onclick="showPage('bots')">بوتات تليجرام</a></li>
+      <li><a href="#" onclick="showPage('apps')">تطبيقات موصى بها</a></li>
+      <li><a href="#" onclick="showPage('popular-sites')">مواقع كل الناس بتدور عليها</a></li>
+    </ul>
+    
+    <div class="section-title">المقالات</div>
+    <ul class="sitemap-list">
+      <li><a href="#" onclick="showArticle('article1')">أفضل 5 طرق لربح المال من جوجل أدسنس</a></li>
+      <li><a href="#" onclick="showArticle('article2')">تحسين تجربة الجوال لزيادة أرباح أدسنس</a></li>
+      <li><a href="#" onclick="showArticle('article3')">أخطاء شائعة تمنع قبول موقعك في أدسنس</a></li>
+    </ul>
+  </div>
+  
+  <!-- صفحات فرعية -->
+  <div id="games-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
+    <h2>قسم الألعاب</h2>
+    <div class="sub-page-content">
+      <p>اكتشف أحدث الألعاب المجانية والمدفوعة بخصومات تصل إلى 90% في قسم الألعاب الخاص بنا.</p>
+      
+      <div class="section-title">ألعاب الأسبوع</div>
+      <div class="cards-container">
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-gamepad"></i></span>
+          <div class="card-title">FIFA 2025</div>
+          <p class="card-description">خصم 60% على أحدث إصدارات FIFA</p>
+          <span class="card-link">احصل على العرض</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-gamepad"></i></span>
+          <div class="card-title">Call of Duty</div>
+          <p class="card-description">عرض خاص لمدة 3 أيام فقط</p>
+          <span class="card-link">احصل على العرض</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-gamepad"></i></span>
+          <div class="card-title">Assassin's Creed</div>
+          <p class="card-description">حزمة كاملة بخصم 70%</p>
+          <span class="card-link">احصل على العرض</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="bots-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
+    <h2>بوتات تليجرام</h2>
+    <div class="sub-page-content">
+      <p>اكتشف أفضل البوتات الذكية لتليجرام التي توفر لك الوقت والجهد في مختلف المهام اليومية.</p>
+      
+      <div class="section-title">البوتات الأكثر شعبية</div>
+      <div class="cards-container">
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-robot"></i></span>
+          <div class="card-title">بوت التوفير</div>
+          <p class="card-description">بوت يرسل لك أحدث العروض والخصومات</p>
+          <span class="card-link">اضف البوت</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-robot"></i></span>
+          <div class="card-title">بوت الأخبار</div>
+          <p class="card-description">بوت يرسل لك آخر الأخبار حسب اهتماماتك</p>
+          <span class="card-link">اضف البوت</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-robot"></i></span>
+          <div class="card-title">بوت الإنتاجية</div>
+          <p class="card-description">بوت يساعدك في إدارة مهامك اليومية</p>
+          <span class="card-link">اضف البوت</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="apps-page" class="page content-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
+    
+    <h2>تطبيقات موصى بها</h2>
+    <div class="sub-page-content">
+      <p>اكتشف التطبيقات المميزة التي تساعدك في توفير المال وتنظيم حياتك اليومية.</p>
+      
+      <div class="section-title">تطبيقات التوفير</div>
+      <div class="cards-container">
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-mobile-alt"></i></span>
+          <div class="card-title">تطبيق وفرنالك</div>
+          <p class="card-description">تطبيقنا الرسمي لجميع العروض والخصومات</p>
+          <span class="card-link">تحميل التطبيق</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-mobile-alt"></i></span>
+          <div class="card-title">تطبيق مقارنة الأسعار</div>
+          <p class="card-description">قارن الأسعار بين المتاجر الإلكترونية</p>
+          <span class="card-link">تحميل التطبيق</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-mobile-alt"></i></span>
+          <div class="card-title">تطبيق إدارة الميزانية</div>
+          <p class="card-description">ساعد نفسك على توفير المال</p>
+          <span class="card-link">تحميل التطبيق</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div id="popular-sites-page" class="page content-page">
-    <h2 data-i18n="popular-sites">مواقع كل الناس بتدور عليها</h2>
-    <p data-i18n="popular-sites-desc">أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية</p>
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة إلى الرئيسية
+    </button>
     
-    <div class="popular-sites-title" data-i18n="most-popular">المواقع الأكثر شهرة</div>
-    
-    <div class="cards-container">
-      <div class="card popular-sites-card" onclick="showSiteModal('youtube')">
-        <span class="card-icon">📺</span>
-        <div class="card-title" data-i18n="site1">يوتيوب</div>
-        <p class="card-description" data-i18n="site1-desc">أكبر منصة لمشاركة الفيديوهات في العالم</p>
-      </div>
+    <h2>مواقع كل الناس بتدور عليها</h2>
+    <div class="sub-page-content">
+      <p>أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية.</p>
       
-      <div class="card popular-sites-card" onclick="showSiteModal('google')">
-        <span class="card-icon">🔍</span>
-        <div class="card-title" data-i18n="site2">جوجل</div>
-        <p class="card-description" data-i18n="site2-desc">محرك البحث الأشهر في العالم</p>
-      </div>
-      
-      <div class="card popular-sites-card" onclick="showSiteModal('wikipedia')">
-        <span class="card-icon">📚</span>
-        <div class="card-title" data-i18n="site3">ويكيبيديا</div>
-        <p class="card-description" data-i18n="site3-desc">الموسوعة الحرة التي يشارك فيها الجميع</p>
-      </div>
-    </div>
-    
-    <div class="popular-sites-title" data-i18n="shopping-sites">مواقع التسوق الشهيرة</div>
-    
-    <div class="cards-container">
-      <div class="card popular-sites-card" onclick="showSiteModal('amazon')">
-        <span class="card-icon">🛒</span>
-        <div class="card-title" data-i18n="site4">أمازون</div>
-        <p class="card-description" data-i18n="site4-desc">أكبر متجر إلكتروني في العالم</p>
-      </div>
-      
-      <div class="card popular-sites-card" onclick="showSiteModal('aliexpress')">
-        <span class="card-icon">📦</span>
-        <div class="card-title" data-i18n="site7">علي اكسبرس</div>
-        <p class="card-description" data-i18n="site7-desc">منصة تسوق عالمية بأسعار منافسة</p>
-      </div>
-      
-      <div class="card popular-sites-card" onclick="showSiteModal('noon')">
-        <span class="card-icon">🛍️</span>
-        <div class="card-title" data-i18n="site8">نون</div>
-        <p class="card-description" data-i18n="site8-desc">أكبر منصة تسوق في الشرق الأوسط</p>
-      </div>
-    </div>
-    
-    <div class="popular-sites-title" data-i18n="social-sites">مواقع التواصل الاجتماعي</div>
-    
-    <div class="cards-container">
-      <div class="card popular-sites-card" onclick="showSiteModal('facebook')">
-        <span class="card-icon">👥</span>
-        <div class="card-title" data-i18n="site5">فيسبوك</div>
-        <p class="card-description" data-i18n="site5-desc">أكبر شبكة تواصل اجتماعي في العالم</p>
-      </div>
-      
-      <div class="card popular-sites-card" onclick="showSiteModal('twitter')">
-        <span class="card-icon">🐦</span>
-        <div class="card-title" data-i18n="site6">تويتر</div>
-        <p class="card-description" data-i18n="site6-desc">منصة للمحادثات والأخبار الفورية</p>
-      </div>
-      
-      <div class="card popular-sites-card" onclick="showSiteModal('instagram')">
-        <span class="card-icon">📸</span>
-        <div class="card-title" data-i18n="site9">انستغرام</div>
-        <p class="card-description" data-i18n="site9-desc">منصة لمشاركة الصور والفيديوهات</p>
+      <div class="section-title">المواقع المميزة</div>
+      <div class="cards-container">
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-shopping-cart"></i></span>
+          <div class="card-title">سوق.كوم</div>
+          <p class="card-description">أكبر سوق إلكتروني في العالم العربي</p>
+          <span class="card-link">زيارة الموقع</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-book"></i></span>
+          <div class="card-title">منصة إدراك</div>
+          <p class="card-description">منصة تعليمية مجانية باللغة العربية</p>
+          <span class="card-link">زيارة الموقع</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon"><i class="fas fa-film"></i></span>
+          <div class="card-title">شاهد</div>
+          <p class="card-description">منصة بث الأفلام والمسلسلات العربية</p>
+          <span class="card-link">زيارة الموقع</span>
+        </div>
       </div>
     </div>
   </div>
-  
-  <!-- نافذة الموقع -->
-  <div id="site-modal" class="site-modal">
-    <div class="site-container">
-      <div class="close-btn" onclick="closeSiteModal()">×</div>
-      <div class="site-icon" id="site-icon">🔍</div>
-      <h2 id="site-title">جوجل</h2>
-      <p id="site-description">محرك البحث الأشهر في العالم</p>
-      <div class="offer-box">
-        <h3 data-i18n="site-info">معلومات عن الموقع</h3>
-        <p id="site-details">تأسس جوجل في عام 1998 وهو الآن أكبر محرك بحث في العالم، يخدم مليارات المستخدمين يومياً.</p>
-      </div>
-      <a href="#" id="site-link" class="visit-btn" data-i18n="visit-site">زيارة الموقع</a>
-    </div>
-  </div>
-  
-  <button id="dashboard-btn">
-    <i class="fas fa-cog"></i>
-  </button>
   
   <footer>
     <div class="footer-content">
@@ -1239,11 +1215,10 @@
       <div class="footer-section">
         <h3 data-i18n="quick-links">روابط سريعة</h3>
         <ul class="footer-links">
-          <li><a href="#" class="nav-link" data-page="home" data-i18n="home"><i class="fas fa-home"></i> الرئيسية</a></li>
-          <li><a href="#" class="nav-link" data-page="about" data-i18n="about"><i class="fas fa-users"></i> من نحن</a></li>
-          <li><a href="#" class="nav-link" data-page="contact" data-i18n="contact"><i class="fas fa-envelope"></i> تواصل معنا</a></li>
-          <li><a href="#" class="nav-link" data-page="privacy" data-i18n="privacy"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
-          <li><a href="#" class="nav-link" data-page="auth" data-i18n="auth"><i class="fas fa-user-lock"></i> تسجيل الدخول</a></li>
+          <li><a href="#" class="nav-link" data-page="home" data-i18n="home" onclick="showPage('home')"><i class="fas fa-home"></i> الرئيسية</a></li>
+          <li><a href="#" class="nav-link" data-page="about" data-i18n="about" onclick="showPage('about')"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="#" class="nav-link" data-page="contact" data-i18n="contact" onclick="showPage('contact')"><i class="fas fa-envelope"></i> تواصل معنا</a></li>
+          <li><a href="#" class="nav-link" data-page="privacy" data-i18n="privacy" onclick="showPage('privacy')"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
         </ul>
       </div>
       
@@ -1263,25 +1238,19 @@
     </div>
   </footer>
 
-  <!-- نافذة تسجيل الدخول -->
-  <div id="login-modal">
-    <div class="login-container">
-      <h2 data-i18n="admin-login">تسجيل الدخول للوحة الإدارة</h2>
-      <form id="login-form">
-        <div class="input-group">
-          <label for="username" data-i18n="username">اسم المستخدم</label>
-          <input type="text" id="username" required>
-        </div>
-        
-        <div class="input-group">
-          <label for="password" data-i18n="password">كلمة المرور</label>
-          <input type="password" id="password" required>
-        </div>
-        
-        <button type="submit" class="login-btn" data-i18n="login">تسجيل الدخول</button>
-      </form>
-      <div class="error-message" id="error-message" data-i18n="login-error">اسم المستخدم أو كلمة المرور غير صحيحة!</div>
-    </div>
+  <!-- زر لوحة الإدارة -->
+  <button id="dashboard-btn">
+    <i class="fas fa-cog"></i>
+  </button>
+  
+  <!-- زر العودة إلى الأعلى -->
+  <button id="back-to-top" title="العودة إلى الأعلى">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
+  <!-- منطقة الإشعارات -->
+  <div class="notification" id="notification">
+    تم إرسال رسالتك بنجاح!
   </div>
 
   <script>
@@ -1291,88 +1260,21 @@
       password: "admin123"
     };
     
-    // بيانات المواقع الشعبية
-    const popularSites = {
-      youtube: {
-        icon: "📺",
-        title: "يوتيوب",
-        description: "أكبر منصة لمشاركة الفيديوهات في العالم",
-        details: "يوتيوب هو موقع لمشاركة الفيديوهات تم تأسيسه عام 2005 وتملكه الآن شركة جوجل. يزوره أكثر من مليار مستخدم شهرياً.",
-        link: "https://www.youtube.com"
-      },
-      google: {
-        icon: "🔍",
-        title: "جوجل",
-        description: "محرك البحث الأشهر في العالم",
-        details: "تأسس جوجل في عام 1998 وهو الآن أكبر محرك بحث في العالم، يخدم مليارات المستخدمين يومياً.",
-        link: "https://www.google.com"
-      },
-      wikipedia: {
-        icon: "📚",
-        title: "ويكيبيديا",
-        description: "الموسوعة الحرة التي يشارك فيها الجميع",
-        details: "ويكيبيديا هي موسوعة حرة متعددة اللغات بدأت عام 2001 وتحتوي على أكثر من 50 مليون مقال في 300 لغة.",
-        link: "https://www.wikipedia.org"
-      },
-      amazon: {
-        icon: "🛒",
-        title: "أمازون",
-        description: "أكبر متجر إلكتروني في العالم",
-        details: "أمازون هو أكبر متجر للتسوق عبر الإنترنت في العالم، تأسس عام 1994 ويقدم ملايين المنتجات المختلفة.",
-        link: "https://www.amazon.com"
-      },
-      facebook: {
-        icon: "👥",
-        title: "فيسبوك",
-        description: "أكبر شبكة تواصل اجتماعي في العالم",
-        details: "فيسبوك هو موقع تواصل اجتماعي تأسس عام 2004 ويضم أكثر من 2.8 مليار مستخدم نشط شهرياً.",
-        link: "https://www.facebook.com"
-      },
-      twitter: {
-        icon: "🐦",
-        title: "تويتر",
-        description: "منصة للمحادثات والأخبار الفورية",
-        details: "تويتر هو منصة تواصل اجتماعي للمشاركة القصيرة تأسست عام 2006 وتستخدم لنشر الأخبار والآراء.",
-        link: "https://www.twitter.com"
-      },
-      aliexpress: {
-        icon: "📦",
-        title: "علي اكسبرس",
-        description: "منصة تسوق عالمية بأسعار منافسة",
-        details: "علي اكسبرس هو موقع تسوق إلكتروني صيني تأسس عام 2010 ويقدم منتجات متنوعة بأسعار منافسة.",
-        link: "https://www.aliexpress.com"
-      },
-      noon: {
-        icon: "🛍️",
-        title: "نون",
-        description: "أكبر منصة تسوق في الشرق الأوسط",
-        details: "نون هي منصة تسوق إلكتروني رائدة في الشرق الأوسط، تأسست عام 2016 وتقدم تشكيلة واسعة من المنتجات.",
-        link: "https://www.noon.com"
-      },
-      instagram: {
-        icon: "📸",
-        title: "انستغرام",
-        description: "منصة لمشاركة الصور والفيديوهات",
-        details: "انستغرام هو تطبيق لمشاركة الصور والفيديوهات تأسس عام 2010 وتملكه الآن شركة فيسبوك.",
-        link: "https://www.instagram.com"
-      }
-    };
-    
     // عناصر DOM
-    const loginModal = document.getElementById('login-modal');
-    const loginForm = document.getElementById('login-form');
-    const errorMessage = document.getElementById('error-message');
-    const dashboardBtn = document.getElementById('dashboard-btn');
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const themeIcon = themeSwitcher.querySelector('i');
     const langButtons = document.querySelectorAll('.lang-btn');
     const htmlElement = document.documentElement;
     const navLinks = document.querySelectorAll('.nav-link');
     const pages = document.querySelectorAll('.page');
-    const siteModal = document.getElementById('site-modal');
+    const hideNavBtn = document.getElementById('hide-nav-btn');
+    const nav = document.querySelector('nav');
+    const backToTopBtn = document.getElementById('back-to-top');
+    const notification = document.getElementById('notification');
     
     // نظام الترجمة
     const translations = {
       ar: {
-        "page-title": "وفرنالك - Wafa3rnalak",
         "welcome": "مرحبًا بك في موقع وفرنالك",
         "hero-text": "موقعك الأول للعروض الحصرية، البوتات الذكية، والتطبيقات المميزة لتوفير وقتك ومالك",
         "discover": "اكتشف أقسامنا المميزة",
@@ -1384,88 +1286,40 @@
         "apps-desc": "تطبيقات تساعدك في توفير المال وتنظيم حياتك",
         "popular-sites": "مواقع كل الناس بتدور عليها",
         "popular-sites-desc": "أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية",
-        "articles": "📚 مقالات مميزة",
-        "article1-title": "أفضل 10 تطبيقات لتوفير المال في 2023",
-        "article1-desc": "اكتشف التطبيقات التي ستساعدك على توفير المال وإدارة ميزانيتك بشكل أفضل",
-        "article2-title": "كيف تستخدم بوتات التليجرام لتوفير الوقت",
-        "article2-desc": "دليل شامل لأفضل بوتات التليجرام التي توفر لك ساعات من العمل اليومي",
-        "article3-title": "ألعاب مجانية يجب أن تجربها هذا الشهر",
-        "article3-desc": "قائمة بأفضل الألعاب المجانية المتاحة الآن على مختلف المنصات",
-        "read-more": "قراءة المزيد",
+        "money-articles": "💸 مقالات تدر الربح",
         "weekly-offers": "أفضل العروض هذا الأسبوع",
         "weekly-offers-desc": "اكتشف أحدث العروض والتخفيضات الحصرية من متجرنا الإلكتروني",
-        "most-popular": "المواقع الأكثر شهرة",
-        "shopping-sites": "مواقع التسوق الشهيرة",
-        "social-sites": "مواقع التواصل الاجتماعي",
-        "site1": "يوتيوب",
-        "site1-desc": "أكبر منصة لمشاركة الفيديوهات في العالم",
-        "site2": "جوجل",
-        "site2-desc": "محرك البحث الأشهر في العالم",
-        "site3": "ويكيبيديا",
-        "site3-desc": "الموسوعة الحرة التي يشارك فيها الجميع",
-        "site4": "أمازون",
-        "site4-desc": "أكبر متجر إلكتروني في العالم",
-        "site5": "فيسبوك",
-        "site5-desc": "أكبر شبكة تواصل اجتماعي في العالم",
-        "site6": "تويتر",
-        "site6-desc": "منصة للمحادثات والأخبار الفورية",
-        "site7": "علي اكسبرس",
-        "site7-desc": "منصة تسوق عالمية بأسعار منافسة",
-        "site8": "نون",
-        "site8-desc": "أكبر منصة تسوق في الشرق الأوسط",
-        "site9": "انستغرام",
-        "site9-desc": "منصة لمشاركة الصور والفيديوهات",
-        "site-info": "معلومات عن الموقع",
-        "visit-site": "زيارة الموقع",
         "about-us": "من نحن",
         "our-story": "قصتنا",
         "our-story-desc": "وفرنالك هو موقع تم إنشاؤه في عام 2023 بهدف مساعدة المستخدمين على توفير الوقت والمال.",
         "our-mission": "مهمتنا",
         "our-mission-desc": "مهمتنا هي توفير أفضل الحلول التكنولوجية التي تساعدك على توفير المال والوقت.",
-        "our-team": "فريقنا",
         "privacy-policy": "سياسة الخصوصية",
         "data-collection": "جمع المعلومات",
         "data-collection-desc": "نحن نجمع معلومات محددة عندما تقوم بالتسجيل في موقعنا أو استخدام خدماتنا.",
         "data-usage": "استخدام المعلومات",
         "data-usage-desc": "نستخدم المعلومات التي نجمعها لتقديم خدماتنا وتحسينها، ولتخصيص تجربتك على موقعنا.",
-        "data-protection": "حماية المعلومات",
-        "data-protection-desc": "نحن نحمي معلوماتك باستخدام إجراءات أمنية متعددة، بما في ذلك التشفير وجدران الحماية.",
-        "cookies": "ملفات تعريف الارتباط (كوكيز)",
-        "cookies-desc": "نستخدم ملفات تعريف الارتباط لتحسين تجربة المستخدم على موقعنا.",
-        "policy-changes": "تغييرات السياسة",
-        "policy-changes-desc": "نحن نحتفظ بالحق في تحديث سياسة الخصوصية هذه في أي وقت.",
         "contact-us": "تواصل معنا",
         "contact-info": "معلومات التواصل",
         "contact-form": "أرسل رسالة",
         "name": "الاسم الكامل",
         "email": "البريد الإلكتروني",
-        "subject": "الموضوع",
-        "support": "الدعم الفني",
-        "partnership": "الشراكات",
-        "suggestion": "مقترحات",
-        "other": "أخرى",
         "message": "الرسالة",
         "send": "إرسال الرسالة",
         "phone": "الهاتف",
         "telegram": "تليجرام",
         "whatsapp": "واتساب",
-        "admin-login": "تسجيل الدخول للوحة الإدارة",
-        "username": "اسم المستخدم",
-        "password": "كلمة المرور",
-        "login": "تسجيل الدخول",
-        "login-error": "اسم المستخدم أو كلمة المرور غير صحيحة!",
         "about-text": "نحن نساعدك على توفير وقتك ومالك من خلال أفضل العروض، البوتات الذكية، والتطبيقات المميزة",
         "quick-links": "روابط سريعة",
         "home": "الرئيسية",
         "about": "من نحن",
         "contact": "تواصل معنا",
         "privacy": "سياسة الخصوصية",
-        "auth": "تسجيل الدخول",
         "site-name": "وفرنالك",
-        "rights": "جميع الحقوق محفوظة"
+        "rights": "جميع الحقوق محفوظة",
+        "sitemap": "خريطة الموقع"
       },
       en: {
-        "page-title": "SaveForYou - Wafa3rnalak",
         "welcome": "Welcome to Wafa3rnalak",
         "hero-text": "Your premier destination for exclusive offers, smart bots, and premium apps to save your time and money",
         "discover": "Discover Our Featured Sections",
@@ -1477,96 +1331,61 @@
         "apps-desc": "Apps that help you save money and organize your life",
         "popular-sites": "Sites Everyone is Looking For",
         "popular-sites-desc": "The most popular sites everyone needs in their daily lives",
-        "articles": "📚 Featured Articles",
-        "article1-title": "Top 10 Money Saving Apps in 2023",
-        "article1-desc": "Discover apps that will help you save money and manage your budget better",
-        "article2-title": "How to Use Telegram Bots to Save Time",
-        "article2-desc": "A comprehensive guide to the best Telegram bots that save you hours of daily work",
-        "article3-title": "Free Games You Should Try This Month",
-        "article3-desc": "List of the best free games available now on various platforms",
-        "read-more": "Read More",
+        "money-articles": "💸 Money Making Articles",
         "weekly-offers": "Best Offers This Week",
         "weekly-offers-desc": "Discover the latest exclusive offers and discounts from our e-store",
-        "most-popular": "Most Popular Sites",
-        "shopping-sites": "Popular Shopping Sites",
-        "social-sites": "Social Media Sites",
-        "site1": "YouTube",
-        "site1-desc": "The largest video sharing platform in the world",
-        "site2": "Google",
-        "site2-desc": "The most popular search engine in the world",
-        "site3": "Wikipedia",
-        "site3-desc": "The free encyclopedia that everyone contributes to",
-        "site4": "Amazon",
-        "site4-desc": "The largest online store in the world",
-        "site5": "Facebook",
-        "site5-desc": "The largest social network in the world",
-        "site6": "Twitter",
-        "site6-desc": "Platform for conversations and instant news",
-        "site7": "AliExpress",
-        "site7-desc": "Global shopping platform with competitive prices",
-        "site8": "Noon",
-        "site8-desc": "The largest shopping platform in the Middle East",
-        "site9": "Instagram",
-        "site9-desc": "Platform for sharing photos and videos",
-        "site-info": "About the Site",
-        "visit-site": "Visit Site",
         "about-us": "About Us",
         "our-story": "Our Story",
         "our-story-desc": "Wafa3rnalak is a website created in 2023 with the aim of helping users save time and money.",
         "our-mission": "Our Mission",
         "our-mission-desc": "Our mission is to provide the best technological solutions that help you save money and time.",
-        "our-team": "Our Team",
         "privacy-policy": "Privacy Policy",
         "data-collection": "Data Collection",
         "data-collection-desc": "We collect specific information when you register on our site or use our services.",
         "data-usage": "Data Usage",
         "data-usage-desc": "We use the information we collect to provide and improve our services, and to personalize your experience on our site.",
-        "data-protection": "Data Protection",
-        "data-protection-desc": "We protect your information using multiple security measures, including encryption and firewalls.",
-        "cookies": "Cookies",
-        "cookies-desc": "We use cookies to improve the user experience on our site.",
-        "policy-changes": "Policy Changes",
-        "policy-changes-desc": "We reserve the right to update this privacy policy at any time.",
         "contact-us": "Contact Us",
         "contact-info": "Contact Information",
         "contact-form": "Send a Message",
         "name": "Full Name",
         "email": "Email",
-        "subject": "Subject",
-        "support": "Technical Support",
-        "partnership": "Partnerships",
-        "suggestion": "Suggestions",
-        "other": "Other",
         "message": "Message",
         "send": "Send Message",
         "phone": "Phone",
         "telegram": "Telegram",
         "whatsapp": "WhatsApp",
-        "admin-login": "Admin Dashboard Login",
-        "username": "Username",
-        "password": "Password",
-        "login": "Login",
-        "login-error": "Incorrect username or password!",
         "about-text": "We help you save your time and money through the best offers, smart bots, and premium apps",
         "quick-links": "Quick Links",
         "home": "Home",
         "about": "About Us",
         "contact": "Contact Us",
         "privacy": "Privacy Policy",
-        "auth": "Login",
         "site-name": "Wafa3rnalak",
-        "rights": "All Rights Reserved"
+        "rights": "All Rights Reserved",
+        "sitemap": "Sitemap"
       }
     };
+    
+    // تبديل وضع الليل/النهار
+    function toggleTheme() {
+      document.body.classList.toggle('night-mode');
+      localStorage.setItem('theme', document.body.classList.contains('night-mode') ? 'night' : 'day');
+      
+      // تحديث أيقونة الزر
+      if (document.body.classList.contains('night-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    }
     
     // تغيير اللغة
     function changeLanguage(lang) {
       // تحديث سمة اللغة واتجاه النص
       htmlElement.lang = lang;
       htmlElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-      
-      // تحديث عنوان الصفحة
-      document.title = translations[lang]["page-title"];
       
       // تحديث النصوص
       document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -1589,23 +1408,14 @@
       localStorage.setItem('language', lang);
     }
     
-    // إظهار نافذة الموقع
-    function showSiteModal(siteId) {
-      const site = popularSites[siteId];
-      document.getElementById('site-icon').textContent = site.icon;
-      document.getElementById('site-title').textContent = site.title;
-      document.getElementById('site-description').textContent = site.description;
-      document.getElementById('site-details').textContent = site.details;
-      document.getElementById('site-link').href = site.link;
+    // إظهار الإشعار
+    function showNotification(message) {
+      notification.textContent = message;
+      notification.classList.add('show');
       
-      siteModal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    
-    // إغلاق نافذة الموقع
-    function closeSiteModal() {
-      siteModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
     }
     
     // تبديل الصفحات
@@ -1616,12 +1426,19 @@
       });
       
       // إظهار الصفحة المطلوبة
-      document.getElementById(`${pageId}-page`).classList.add('active');
+      const pageElement = document.getElementById(`${pageId}-page`);
+      if (pageElement) {
+        pageElement.classList.add('active');
+      } else {
+        // إذا لم توجد الصفحة، نعرض الصفحة الرئيسية
+        document.getElementById('home-page').classList.add('active');
+      }
       
-      // تحديث حالة الروابط في شريط التنقل
+      // تحديث حالة الروابط في شريط التنقل (للصفحات الرئيسية فقط)
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('data-page') === pageId) {
+        const linkPage = link.getAttribute('data-page');
+        if (linkPage === pageId) {
           link.classList.add('active');
         }
       });
@@ -1630,68 +1447,55 @@
       window.scrollTo(0, 0);
     }
     
-    // فتح نافذة تسجيل الدخول
-    function openLoginModal() {
-      loginModal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    
-    // إغلاق نافذة تسجيل الدخول
-    function closeLoginModal() {
-      loginModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-    
-    // تسجيل الدخول
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+    // إخفاء شريط التنقل
+    function toggleNavVisibility() {
+      nav.classList.toggle('hidden');
+      localStorage.setItem('navHidden', nav.classList.contains('hidden'));
       
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      
-      if (username === adminCredentials.username && password === adminCredentials.password) {
-        // نجاح الدخول
-        closeLoginModal();
-        alert(htmlElement.lang === 'ar' ? 'تم الدخول بنجاح إلى لوحة الإدارة!' : 'Successfully logged in to the admin dashboard!');
-        
-        // إظهار صفحة لوحة الإدارة
-        showPage('dashboard');
+      // تحديث أيقونة الزر
+      const icon = hideNavBtn.querySelector('i');
+      if (nav.classList.contains('hidden')) {
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
       } else {
-        // فشل الدخول
-        errorMessage.style.display = 'block';
-        setTimeout(() => {
-          errorMessage.style.display = 'none';
-        }, 3000);
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
       }
-    });
-    
-    // تسجيل الخروج
-    function logout() {
-      showPage('home');
-      alert(htmlElement.lang === 'ar' ? 'تم تسجيل الخروج من لوحة الإدارة' : 'Logged out from admin dashboard');
     }
     
-    // إظهار لوحة الإدارة عند النقر على الزر الأخضر
-    dashboardBtn.addEventListener('click', function() {
-      openLoginModal();
-    });
+    // إظهار مقالة
+    function showArticle(articleId) {
+      // في الحقيقة، يجب أن يكون لديك صفحة أو نافذة منبثقة لعرض المقالات
+      // هنا سنستخدم إشعارًا كبديل مؤقت
+      const articleTitles = {
+        'article1': 'أفضل 5 طرق لربح المال من جوجل أدسنس',
+        'article2': 'تحسين تجربة الجوال لزيادة أرباح أدسنس',
+        'article3': 'أخطاء شائعة تمنع قبول موقعك في أدسنس'
+      };
+      
+      showNotification(`تم فتح مقالة: ${articleTitles[articleId] || 'مقالة غير معروفة'}`);
+    }
     
-    // تبديل اللغة
-    langButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const lang = this.getAttribute('data-lang');
-        changeLanguage(lang);
-      });
-    });
-    
-    // تبديل الصفحات
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const pageId = this.getAttribute('data-page');
-        showPage(pageId);
-      });
-    });
+    // إرسال نموذج التواصل
+    function submitContactForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (!name || !email || !message) {
+        showNotification('الرجاء ملء جميع الحقول المطلوبة');
+        return;
+      }
+      
+      // هنا يجب إرسال البيانات إلى الخادم
+      // لكننا سنكتفي بعرض إشعار
+      showNotification('تم إرسال رسالتك بنجاح! سوف نتصل بك قريبًا.');
+      
+      // إعادة تعيين النموذج
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('message').value = '';
+    }
     
     // تهيئة الصفحة عند التحميل
     window.addEventListener('DOMContentLoaded', function() {
@@ -1699,38 +1503,48 @@
       const savedLang = localStorage.getItem('language') || 'ar';
       changeLanguage(savedLang);
       
-      // إعداد أزرار اللغة
-      langButtons.forEach(btn => {
-        if (btn.getAttribute('data-lang') === savedLang) {
-          btn.classList.add('active');
-        }
-      });
-      
-      // إرسال نموذج التواصل
-      const contactForm = document.querySelector('.contact-form');
-      if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          alert(htmlElement.lang === 'ar' ? 'تم إرسال رسالتك بنجاح! سوف نتصل بك قريبًا.' : 'Your message has been sent successfully! We will contact you soon.');
-          this.reset();
-        });
+      // تحميل سمة المستخدم المفضلة
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'night') {
+        document.body.classList.add('night-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
       }
       
-      // إضافة معالجات لروابط التحميل
-      document.querySelectorAll('.read-more').forEach(link => {
-        if (link.getAttribute('data-i18n') === 'download') {
-          link.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert(htmlElement.lang === 'ar' ? 'جارٍ تحميل الملف...' : 'Downloading file...');
-          });
+      // تحميل حالة شريط التنقل
+      if (localStorage.getItem('navHidden') === 'true') {
+        nav.classList.add('hidden');
+        const icon = hideNavBtn.querySelector('i');
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      }
+      
+      // إضافة معالج لزر العودة إلى الأعلى
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
         }
       });
       
-      // إغلاق نافذة الموقع عند النقر خارجها
-      siteModal.addEventListener('click', function(e) {
-        if (e.target === siteModal) {
-          closeSiteModal();
-        }
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // إضافة معالجات الأحداث
+    themeSwitcher.addEventListener('click', toggleTheme);
+    
+    hideNavBtn.addEventListener('click', toggleNavVisibility);
+    
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
   </script>
