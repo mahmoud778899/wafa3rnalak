@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تسجيل الدخول أو إنشاء حساب</title>
+  <title>تسجيل الدخول</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex justify-center items-center h-screen">
@@ -12,18 +12,20 @@
 
     <input id="login-email" type="email" placeholder="البريد الإلكتروني"
       class="border border-gray-300 p-2 rounded w-full mb-3" required>
+
     <input id="login-password" type="password" placeholder="كلمة المرور"
       class="border border-gray-300 p-2 rounded w-full mb-3" required>
 
-    <button onclick="login()" class="bg-blue-600 text-white py-2 w-full rounded hover:bg-blue-700">
-      دخول
+    <button onclick="signIn()" class="bg-blue-600 text-white py-2 w-full rounded hover:bg-blue-700">
+      تسجيل الدخول
     </button>
 
-    <p class="mt-4 text-gray-600">ليس لديك حساب؟
-      <a href="register.html" class="text-blue-600 hover:underline">إنشاء حساب جديد</a>
+    <p class="mt-4 text-gray-600">
+      ليس لديك حساب؟
+      <a href="register.html" class="text-green-600 hover:underline">أنشئ حساب جديد</a>
     </p>
 
-    <p id="login-message" class="mt-4 text-green-600 font-semibold"></p>
+    <p id="login-message" class="mt-4 font-semibold text-sm"></p>
   </div>
 
   <script type="module">
@@ -45,7 +47,7 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    window.login = function () {
+    window.signIn = function () {
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
       const message = document.getElementById("login-message");
@@ -53,17 +55,26 @@
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          if (user.emailVerified) {
-            message.textContent = "✅ تم تسجيل الدخول بنجاح، سيتم تحويلك...";
-            setTimeout(() => {
-              window.location.href = "index.html";
-            }, 1500);
-          } else {
-            message.textContent = "⚠️ الرجاء تفعيل البريد الإلكتروني أولاً.";
+          
+          if (!user.emailVerified) {
+            message.textContent = "❌ رجاءً فعّل بريدك الإلكتروني أولاً.";
+            message.classList.remove("text-green-600");
+            message.classList.add("text-red-600");
+            return;
           }
+
+          message.textContent = "✅ تم تسجيل الدخول بنجاح!";
+          message.classList.remove("text-red-600");
+          message.classList.add("text-green-600");
+
+          setTimeout(() => {
+            window.location.href = "index.html"; // صفحة البداية
+          }, 2000);
         })
         .catch((error) => {
           message.textContent = "❌ " + error.message;
+          message.classList.remove("text-green-600");
+          message.classList.add("text-red-600");
         });
     };
   </script>
