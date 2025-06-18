@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Signup</title>
+</head>
+<body>
+  <h2>إنشاء حساب</h2>
+  <input type="email" id="signupEmail" placeholder="الإيميل">
+  <input type="password" id="signupPassword" placeholder="كلمة المرور">
+  <button onclick="signUp()">إنشاء حساب</button>
+
+  <h2>تسجيل دخول</h2>
+  <input type="email" id="loginEmail" placeholder="الإيميل">
+  <input type="password" id="loginPassword" placeholder="كلمة المرور">
+  <button onclick="login()">دخول</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9QijUrH298l7FvvDWz21umIEv7d9edBU",
+      authDomain: "wafa3rnalak.firebaseapp.com",
+      projectId: "wafa3rnalak",
+      storageBucket: "wafa3rnalak.firebasestorage.app",
+      messagingSenderId: "122333822215",
+      appId: "1:122333822215:web:60e839b8f67e759ea499a2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Sign up
+    window.signUp = function () {
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+          alert("تم إنشاء الحساب بنجاح 🎉");
+        })
+        .catch(error => {
+          alert("خطأ: " + error.message);
+        });
+    };
+
+    // Login
+    window.login = function () {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+          alert("تم تسجيل الدخول ✅");
+          // ممكن تنقله لصفحة تانية هنا
+          // window.location.href = "index.html";
+        })
+        .catch(error => {
+          alert("خطأ: " + error.message);
+        });
+    };
+  </script>
+</body>
+</html>
