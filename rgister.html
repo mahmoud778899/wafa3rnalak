@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>إنشاء حساب جديد</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold text-green-600 mb-4">إنشاء حساب جديد</h1>
+
+    <input id="signup-name" type="text" placeholder="الاسم الكامل"
+      class="border border-gray-300 p-2 rounded w-full mb-3" required>
+
+    <input id="signup-country" type="text" placeholder="الدولة"
+      class="border border-gray-300 p-2 rounded w-full mb-3" required>
+
+    <input id="signup-email" type="email" placeholder="البريد الإلكتروني"
+      class="border border-gray-300 p-2 rounded w-full mb-3" required>
+
+    <input id="signup-password" type="password" placeholder="كلمة المرور"
+      class="border border-gray-300 p-2 rounded w-full mb-3" required>
+
+    <button onclick="signUp()" class="bg-green-600 text-white py-2 w-full rounded hover:bg-green-700">
+      إنشاء حساب
+    </button>
+
+    <p class="mt-4 text-gray-600">لديك حساب بالفعل؟
+      <a href="auth.html" class="text-blue-600 hover:underline">سجّل دخول</a>
+    </p>
+
+    <p id="signup-message" class="mt-4 font-semibold text-sm"></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      sendEmailVerification
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9QijUrH298l7FvvDWz21umIEv7d9edBU",
+      authDomain: "wafa3rnalak.firebaseapp.com",
+      projectId: "wafa3rnalak",
+      storageBucket: "wafa3rnalak.firebasestorage.app",
+      messagingSenderId: "122333822215",
+      appId: "1:122333822215:web:60e839b8f67e759ea499a2",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.signUp = function () {
+      const name = document.getElementById("signup-name").value;
+      const country = document.getElementById("signup-country").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const message = document.getElementById("signup-message");
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          const user = userCredential.user;
+
+          // حفظ البيانات في Firestore
+          await setDoc(doc(db, "users", user.uid), {
+            email,
+            name,
+            country,
+            createdAt: new Date()
+          });
+
+          // إرسال رسالة تفعيل
+          await sendEmailVerification(user);
+
+          message.textContent = "✅ تم إنشاء الحساب. تم إرسال رسالة تأكيد إلى بريدك.";
+          message.classList.add("text-green-600");
+
+          setTimeout(() => {
+            window.location.href = "auth.html";
+          }, 3000);
+        })
+        .catch((error) => {
+          message.textContent = "❌ " + error.message;
+          message.classList.remove("text-green-600");
+          message.classList.add("text-red-600");
+        });
+    };
+  </script>
+</body>
+</html>
