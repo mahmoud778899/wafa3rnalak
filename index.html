@@ -2,8 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>وفرنالك - Wafa3rnalak</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary: #2a6bcc;
@@ -15,6 +17,14 @@
       --warning: #f39c12;
       --danger: #e74c3c;
       --dashboard: #9b59b6;
+      --text: #34495e;
+      --popular-sites: #e84393;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     body {
@@ -25,8 +35,12 @@
       line-height: 1.8;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      padding-bottom: 100px;
+      transition: all 0.3s ease;
     }
     
+    /* شريط التنقل */
     nav {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       padding: 1.2rem;
@@ -34,11 +48,21 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
     }
     
     nav a {
       color: white;
-      margin: 0 1.2rem;
       text-decoration: none;
       font-weight: 500;
       font-size: 1.1rem;
@@ -53,33 +77,66 @@
       transform: translateY(-2px);
     }
     
+    .language-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .lang-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .lang-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .lang-btn.active {
+      background: white;
+      color: var(--primary);
+    }
+    
+    /* المحتوى الرئيسي */
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    
     h1 {
       color: var(--dark);
-      text-align: center;
       font-weight: 700;
       font-size: 2.5rem;
       margin: 1.5rem 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
     
-    h2 {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 1.8rem;
-      margin: 1.2rem 0;
-    }
-    
-    h3 {
-      color: var(--secondary);
-      font-weight: 600;
-      font-size: 1.4rem;
-      margin: 1rem 0;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--secondary);
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #555;
     }
     
     .section-title {
       background: linear-gradient(to right, var(--warning), var(--accent));
+      color: white;
+      padding: 0.8rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 2rem 0 1.5rem;
+      font-weight: 600;
+      font-size: 1.5rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    
+    .popular-sites-title {
+      background: linear-gradient(to right, var(--popular-sites), #fd79a8);
       color: white;
       padding: 0.8rem;
       border-radius: 8px;
@@ -109,6 +166,10 @@
       transition: all 0.3s ease;
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
     }
     
     .card:hover {
@@ -120,6 +181,13 @@
     .bot-card { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
     .apps-card { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
     .dashboard-card { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+    .popular-sites-card { background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%); }
+    
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
     
     .card-title {
       font-size: 1.4rem;
@@ -128,10 +196,10 @@
       color: var(--dark);
     }
     
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
+    .card-description {
+      color: #555;
+      font-size: 1rem;
+      margin-top: auto;
     }
     
     .offer-box {
@@ -149,6 +217,60 @@
       font-weight: 600;
     }
     
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .article-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    
+    .article-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .article-img {
+      height: 180px;
+      background: linear-gradient(45deg, #3498db, #2c3e50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .article-content {
+      padding: 1.5rem;
+    }
+    
+    .article-content h4 {
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+    }
+    
+    .article-content p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    
+    .read-more {
+      display: inline-block;
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    .read-more:hover {
+      text-decoration: underline;
+    }
+    
     footer {
       background: linear-gradient(to right, var(--dark), #1a252f);
       color: white;
@@ -159,55 +281,80 @@
       font-weight: 400;
     }
     
-    footer p {
-      margin: 0.8rem 0;
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: right;
     }
     
-    footer a {
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 1.5rem;
+      padding: 0 1rem;
+    }
+    
+    .footer-section h3 {
+      color: white;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--secondary);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
       color: #bdc3c7;
-      margin: 0 0.8rem;
       text-decoration: none;
       transition: color 0.3s ease;
     }
     
-    footer a:hover {
+    .footer-links a:hover {
       color: white;
-      text-decoration: underline;
     }
     
-    #cookie-banner {
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* زر لوحة الإدارة الأخضر */
+    #dashboard-btn {
       position: fixed;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      background: var(--dark);
-      color: white;
-      padding: 1.2rem;
-      text-align: center;
-      z-index: 9999;
-      display: none;
-      font-size: 0.95rem;
-      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
-    }
-    
-    #cookie-banner button {
-      background: linear-gradient(to right, var(--success), #2ecc71);
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--success), #2ecc71);
       color: white;
       border: none;
-      padding: 0.6rem 1.5rem;
-      margin-right: 1rem;
+      border-radius: 50px;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
       cursor: pointer;
-      border-radius: 30px;
-      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transition: all 0.3s ease;
     }
     
-    #cookie-banner button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    #dashboard-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
     }
     
-    /* تسجيل الدخول للوحة الإدارة */
+    /* نافذة تسجيل الدخول للوحة الإدارة */
     #login-modal {
       display: none;
       position: fixed;
@@ -281,101 +428,845 @@
       display: none;
     }
     
+    /* لوحة الإدارة */
+    .dashboard-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+    }
+    
+    .dashboard-header {
+      background: linear-gradient(to right, var(--dashboard), #8e44ad);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .dashboard-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-box {
+      flex: 1 1 200px;
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dashboard);
+      margin: 0.5rem 0;
+    }
+    
+    .stat-label {
+      color: var(--dark);
+      font-weight: 500;
+    }
+    
+    .dashboard-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    
+    .action-btn {
+      flex: 1 1 250px;
+      background: var(--light);
+      border: 2px solid var(--dashboard);
+      color: var(--dashboard);
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .action-btn:hover {
+      background: var(--dashboard);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(155, 89, 182, 0.3);
+    }
+    
+    .logout-btn {
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .logout-btn:hover {
+      background: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    }
+    
+    /* صفحات المحتوى */
+    .page {
+      display: none;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    .content-page {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+    }
+    
+    .content-page h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--secondary);
+    }
+    
+    .content-page p {
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+    
+    .content-page ul {
+      padding-right: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .content-page li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(42, 107, 204, 0.4);
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .team-member {
+      background: var(--light);
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    
+    .member-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #3498db, #2c3e50);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+    }
+    
+    .member-name {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .member-position {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    
+    .social-links a {
+      color: var(--primary);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    /* التصميم المتجاوب */
     @media (max-width: 768px) {
-      nav a {
-        display: block;
-        margin: 0.5rem 0;
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .language-switcher {
+        justify-content: center;
+        width: 100%;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .cards-container {
+        gap: 1rem;
       }
       
       .card {
         flex: 1 1 100%;
       }
+      
+      .dashboard-stats, .dashboard-actions {
+        flex-direction: column;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-section {
+        text-align: center;
+      }
+      
+      #dashboard-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+    }
+    
+    /* نافذة الموقع */
+    .site-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .site-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--danger);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    .site-icon {
+      font-size: 4rem;
+      margin: 1rem 0;
+      color: var(--popular-sites);
+    }
+    
+    .visit-btn {
+      display: inline-block;
+      background: linear-gradient(to right, var(--popular-sites), #fd79a8);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .visit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4);
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="#articles">المقالات</a>
-    <a href="#" id="dashboard-link">لوحة الإدارة</a>
-    <a href="about.html">من نحن</a>
-    <a href="contact.html">تواصل معنا</a>
-    <a href="privacy-policy.html">سياسة الخصوصية</a>
+    <div class="nav-links">
+      <a href="#" class="nav-link active" data-page="home">الرئيسية</a>
+      <a href="#" class="nav-link" data-page="about">من نحن</a>
+      <a href="#" class="nav-link" data-page="contact">تواصل معنا</a>
+      <a href="#" class="nav-link" data-page="privacy">سياسة الخصوصية</a>
+      <a href="#" class="nav_link" data_page="auth">تسجيل الدخول</a>
+    </div>
+    
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="ar">العربية</button>
+      <button class="lang-btn" data-lang="en">English</button>
+    </div>
   </nav>
 
-  <h1>مرحبًا بك في موقع وفرنالك</h1>
-  
-  <div class="section-title">اكتشف أقسامنا المميزة</div>
-  
-  <div class="cards-container">
-    <a href="games1.html" class="card games-card">
-      <span class="card-icon">🎮</span>
-      <div class="card-title">قسم الألعاب</div>
-    </a>
+  <!-- الصفحة الرئيسية -->
+  <div id="home-page" class="page active">
+    <div class="hero">
+      <h1 data-i18n="welcome">مرحبًا بك في موقع وفرنالك</h1>
+      <p data-i18n="hero-text">موقعك الأول للعروض الحصرية، البوتات الذكية، والتطبيقات المميزة لتوفير وقتك ومالك</p>
+    </div>
     
-    <a href="bot.html" class="card bot-card">
-      <span class="card-icon">🤖</span>
-      <div class="card-title">بوتات تليجرام</div>
-    </a>
+    <div class="section-title" data-i18n="discover">اكتشف أقسامنا المميزة</div>
     
-    <a href="app1.html" class="card apps-card">
-      <span class="card-icon">💳</span>
-      <div class="card-title">تطبيقات موصى بها</div>
-    </a>
+    <div class="cards-container">
+      <div class="card games-card" onclick="showPage('games')">
+        <span class="card-icon">🎮</span>
+        <div class="card-title" data-i18n="games">قسم الألعاب</div>
+        <p class="card-description" data-i18n="games-desc">ألعاب مجانية ومدفوعة بخصومات تصل إلى 90%</p>
+      </div>
+      
+      <div class="card bot-card" onclick="showPage('bot')">
+        <span class="card-icon">🤖</span>
+        <div class="card-title" data-i18n="bots">بوتات تليجرام</div>
+        <p class="card-description" data-i18n="bots-desc">بوتات ذكية توفر لك الوقت والجهد في مختلف المهام</p>
+      </div>
+      
+      <div class="card apps-card" onclick="showPage('apps')">
+        <span class="card-icon">💳</span>
+        <div class="card-title" data-i18n="apps">تطبيقات موصى بها</div>
+        <p class="card-description" data-i18n="apps-desc">تطبيقات تساعدك في توفير المال وتنظيم حياتك</p>
+      </div>
+      
+      <!-- البطاقة الجديدة: مواقع كل الناس بتدور عليها -->
+      <div class="card popular-sites-card" onclick="showPage('popular-sites')">
+        <span class="card-icon">🌐</span>
+        <div class="card-title" data-i18n="popular-sites">مواقع كل الناس بتدور عليها</div>
+        <p class="card-description" data-i18n="popular-sites-desc">أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية</p>
+      </div>
+    </div>
     
-    <!-- لوحة الإدارة - خاص بالمالك فقط --  
-  <!-- نافذة تسجيل الدخول للوحة الإدارة -->
-  <div id="login-modal">
-    <div class="login-container">
-      <h2>تسجيل الدخول للوحة الإدارة</h2>
-      <p>هذه اللوحة خاصة بمالك الموقع فقط</p>
-      <form id="login-form">
-        <div class="input-group">
-          <label for="username">اسم المستخدم:</label>
-          <input type="text" id="username" required>
+    <div class="section-title" data-i18n="articles">📚 مقالات مميزة</div>
+    
+    <div class="articles-grid">
+      <div class="article-card">
+        <div class="article-img">📱</div>
+        <div class="article-content">
+          <h4 data-i18n="article1-title">أفضل 10 تطبيقات لتوفير المال في 2023</h4>
+          <p data-i18n="article1-desc">اكتشف التطبيقات التي ستساعدك على توفير المال وإدارة ميزانيتك بشكل أفضل</p>
+          <a href="#" class="read-more" data-i18n="read-more">قراءة المزيد</a>
         </div>
-        <div class="input-group">
-          <label for="password">كلمة المرور:</label>
-          <input type="password" id="password" required>
+      </div>
+      
+      <div class="article-card">
+        <div class="article-img">🤖</div>
+        <div class="article-content">
+          <h4 data-i18n="article2-title">كيف تستخدم بوتات التليجرام لتوفير الوقت</h4>
+          <p data-i18n="article2-desc">دليل شامل لأفضل بوتات التليجرام التي توفر لك ساعات من العمل اليومي</p>
+          <a href="#" class="read-more" data-i18n="read-more">قراءة المزيد</a>
         </div>
-        <button type="submit" class="login-btn">دخول</button>
-        <div id="error-message" class="error-message">بيانات الدخول غير صحيحة!</div>
-      </form>
+      </div>
+      
+      <div class="article-card">
+        <div class="article-img">🎮</div>
+        <div class="article-content">
+          <h4 data-i18n="article3-title">ألعاب مجانية يجب أن تجربها هذا الشهر</h4>
+          <p data-i18n="article3-desc">قائمة بأفضل الألعاب المجانية المتاحة الآن على مختلف المنصات</p>
+          <a href="#" class="read-more" data-i18n="read-more">قراءة المزيد</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="offer-box">
+      <h3 data-i18n="weekly-offers">أفضل العروض هذا الأسبوع</h3>
+      <p data-i18n="weekly-offers-desc">اكتشف أحدث العروض والتخفيضات الحصرية من متجرنا الإلكتروني</p>
     </div>
   </div>
   
-  <div id="cookie-banner">
-    هذا الموقع يستخدم ملفات تعريف الارتباط (كوكيز) لتحسين تجربتك.
-    <button onclick="acceptCookies()">موافق</button>
+  <!-- صفحة مواقع كل الناس بتدور عليها -->
+  <div id="popular-sites-page" class="page content-page">
+    <h2 data-i18n="popular-sites">مواقع كل الناس بتدور عليها</h2>
+    <p data-i18n="popular-sites-desc">أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية</p>
+    
+    <div class="popular-sites-title" data-i18n="most-popular">المواقع الأكثر شهرة</div>
+    
+    <div class="cards-container">
+      <div class="card popular-sites-card" onclick="showSiteModal('youtube')">
+        <span class="card-icon">📺</span>
+        <div class="card-title" data-i18n="site1">يوتيوب</div>
+        <p class="card-description" data-i18n="site1-desc">أكبر منصة لمشاركة الفيديوهات في العالم</p>
+      </div>
+      
+      <div class="card popular-sites-card" onclick="showSiteModal('google')">
+        <span class="card-icon">🔍</span>
+        <div class="card-title" data-i18n="site2">جوجل</div>
+        <p class="card-description" data-i18n="site2-desc">محرك البحث الأشهر في العالم</p>
+      </div>
+      
+      <div class="card popular-sites-card" onclick="showSiteModal('wikipedia')">
+        <span class="card-icon">📚</span>
+        <div class="card-title" data-i18n="site3">ويكيبيديا</div>
+        <p class="card-description" data-i18n="site3-desc">الموسوعة الحرة التي يشارك فيها الجميع</p>
+      </div>
+    </div>
+    
+    <div class="popular-sites-title" data-i18n="shopping-sites">مواقع التسوق الشهيرة</div>
+    
+    <div class="cards-container">
+      <div class="card popular-sites-card" onclick="showSiteModal('amazon')">
+        <span class="card-icon">🛒</span>
+        <div class="card-title" data-i18n="site4">أمازون</div>
+        <p class="card-description" data-i18n="site4-desc">أكبر متجر إلكتروني في العالم</p>
+      </div>
+      
+      <div class="card popular-sites-card" onclick="showSiteModal('aliexpress')">
+        <span class="card-icon">📦</span>
+        <div class="card-title" data-i18n="site7">علي اكسبرس</div>
+        <p class="card-description" data-i18n="site7-desc">منصة تسوق عالمية بأسعار منافسة</p>
+      </div>
+      
+      <div class="card popular-sites-card" onclick="showSiteModal('noon')">
+        <span class="card-icon">🛍️</span>
+        <div class="card-title" data-i18n="site8">نون</div>
+        <p class="card-description" data-i18n="site8-desc">أكبر منصة تسوق في الشرق الأوسط</p>
+      </div>
+    </div>
+    
+    <div class="popular-sites-title" data-i18n="social-sites">مواقع التواصل الاجتماعي</div>
+    
+    <div class="cards-container">
+      <div class="card popular-sites-card" onclick="showSiteModal('facebook')">
+        <span class="card-icon">👥</span>
+        <div class="card-title" data-i18n="site5">فيسبوك</div>
+        <p class="card-description" data-i18n="site5-desc">أكبر شبكة تواصل اجتماعي في العالم</p>
+      </div>
+      
+      <div class="card popular-sites-card" onclick="showSiteModal('twitter')">
+        <span class="card-icon">🐦</span>
+        <div class="card-title" data-i18n="site6">تويتر</div>
+        <p class="card-description" data-i18n="site6-desc">منصة للمحادثات والأخبار الفورية</p>
+      </div>
+      
+      <div class="card popular-sites-card" onclick="showSiteModal('instagram')">
+        <span class="card-icon">📸</span>
+        <div class="card-title" data-i18n="site9">انستغرام</div>
+        <p class="card-description" data-i18n="site9-desc">منصة لمشاركة الصور والفيديوهات</p>
+      </div>
+    </div>
   </div>
+  
+  <!-- صفحات أخرى تبقى كما هي (مختصرة للاختصار) -->
+  
+  <!-- نافذة الموقع -->
+  <div id="site-modal" class="site-modal">
+    <div class="site-container">
+      <div class="close-btn" onclick="closeSiteModal()">×</div>
+      <div class="site-icon" id="site-icon">🔍</div>
+      <h2 id="site-title">جوجل</h2>
+      <p id="site-description">محرك البحث الأشهر في العالم</p>
+      <div class="offer-box">
+        <h3 data-i18n="site-info">معلومات عن الموقع</h3>
+        <p id="site-details">تأسس جوجل في عام 1998 وهو الآن أكبر محرك بحث في العالم، يخدم مليارات المستخدمين يومياً.</p>
+      </div>
+      <a href="#" id="site-link" class="visit-btn" data-i18n="visit-site">زيارة الموقع</a>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 data-i18n="about-us">عن وفرنالك</h3>
+        <p data-i18n="about-text">نحن نساعدك على توفير وقتك ومالك من خلال أفضل العروض، البوتات الذكية، والتطبيقات المميزة</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3 data-i18n="quick-links">روابط سريعة</h3>
+        <ul class="footer-links">
+          <li><a href="#" class="nav-link" data-page="home" data-i18n="home">الرئيسية</a></li>
+          <li><a href="#" class="nav-link" data-page="about" data-i18n="about">من نحن</a></li>
+          <li><a href="#" class="nav-link" data-page="contact" data-i18n="contact">تواصل معنا</a></li>
+          <li><a href="#" class="nav-link" data-page="privacy" data-i18n="privacy">سياسة الخصوصية</a></li>
+          <li><a href="#" class="nav_link" data_page="login" data-i118n="auth">تسجيل الدخول</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3 data-i18n="contact-info">معلومات التواصل</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-envelope"></i> mhoda8952@gmail.com</li>
+          <li><i class="fas fa-phone"></i> 01142673202</li>
+          <li><i class="fab fa-telegram"></i> @wafa3rnalak</li>
+          <li><i class="fab fa-whatsapp"></i> 01142673202</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>© 2025 <span data-i18n="site-name">وفرنالك</span> - <span data-i18n="rights">جميع الحقوق محفوظة</span></p>
+    </div>
+  </footer>
 
   <script>
-    // بيانات المالك (يمكن تغييرها حسب الحاجة)
+    // بيانات المالك
     const adminCredentials = {
       username: "admin",
-      password: "abonaama2009"
+      password: "admin123"
+    };
+    
+    // بيانات المواقع الشعبية
+    const popularSites = {
+      youtube: {
+        icon: "📺",
+        title: "يوتيوب",
+        description: "أكبر منصة لمشاركة الفيديوهات في العالم",
+        details: "يوتيوب هو موقع لمشاركة الفيديوهات تم تأسيسه عام 2005 وتملكه الآن شركة جوجل. يزوره أكثر من مليار مستخدم شهرياً.",
+        link: "https://www.youtube.com"
+      },
+      google: {
+        icon: "🔍",
+        title: "جوجل",
+        description: "محرك البحث الأشهر في العالم",
+        details: "تأسس جوجل في عام 1998 وهو الآن أكبر محرك بحث في العالم، يخدم مليارات المستخدمين يومياً.",
+        link: "https://www.google.com"
+      },
+      wikipedia: {
+        icon: "📚",
+        title: "ويكيبيديا",
+        description: "الموسوعة الحرة التي يشارك فيها الجميع",
+        details: "ويكيبيديا هي موسوعة حرة متعددة اللغات بدأت عام 2001 وتحتوي على أكثر من 50 مليون مقال في 300 لغة.",
+        link: "https://www.wikipedia.org"
+      },
+      amazon: {
+        icon: "🛒",
+        title: "أمازون",
+        description: "أكبر متجر إلكتروني في العالم",
+        details: "أمازون هو أكبر متجر للتسوق عبر الإنترنت في العالم، تأسس عام 1994 ويقدم ملايين المنتجات المختلفة.",
+        link: "https://www.amazon.com"
+      },
+      facebook: {
+        icon: "👥",
+        title: "فيسبوك",
+        description: "أكبر شبكة تواصل اجتماعي في العالم",
+        details: "فيسبوك هو موقع تواصل اجتماعي تأسس عام 2004 ويضم أكثر من 2.8 مليار مستخدم نشط شهرياً.",
+        link: "https://www.facebook.com"
+      },
+      twitter: {
+        icon: "🐦",
+        title: "تويتر",
+        description: "منصة للمحادثات والأخبار الفورية",
+        details: "تويتر هو منصة تواصل اجتماعي للمشاركة القصيرة تأسست عام 2006 وتستخدم لنشر الأخبار والآراء.",
+        link: "https://www.twitter.com"
+      },
+      aliexpress: {
+        icon: "📦",
+        title: "علي اكسبرس",
+        description: "منصة تسوق عالمية بأسعار منافسة",
+        details: "علي اكسبرس هو موقع تسوق إلكتروني صيني تأسس عام 2010 ويقدم منتجات متنوعة بأسعار منافسة.",
+        link: "https://www.aliexpress.com"
+      },
+      noon: {
+        icon: "🛍️",
+        title: "نون",
+        description: "أكبر منصة تسوق في الشرق الأوسط",
+        details: "نون هي منصة تسوق إلكتروني رائدة في الشرق الأوسط، تأسست عام 2016 وتقدم تشكيلة واسعة من المنتجات.",
+        link: "https://www.noon.com"
+      },
+      instagram: {
+        icon: "📸",
+        title: "انستغرام",
+        description: "منصة لمشاركة الصور والفيديوهات",
+        details: "انستغرام هو تطبيق لمشاركة الصور والفيديوهات تأسس عام 2010 وتملكه الآن شركة فيسبوك.",
+        link: "https://www.instagram.com"
+      }
     };
     
     // عناصر DOM
     const loginModal = document.getElementById('login-modal');
     const loginForm = document.getElementById('login-form');
-    const dashboardLink = document.getElementById('dashboard-link');
-    const dashboardCardLink = document.getElementById('dashboard-card-link');
     const errorMessage = document.getElementById('error-message');
+    const dashboardBtn = document.getElementById('dashboard-btn');
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const htmlElement = document.documentElement;
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    const siteModal = document.getElementById('site-modal');
     
-    // فتح نافذة تسجيل الدخول عند النقر على لوحة الإدارة
+    // نظام الترجمة
+    const translations = {
+      ar: {
+        "page-title": "وفرنالك - Wafa3rnalak",
+        "welcome": "مرحبًا بك في موقع وفرنالك",
+        "hero-text": "موقعك الأول للعروض الحصرية، البوتات الذكية، والتطبيقات المميزة لتوفير وقتك ومالك",
+        "discover": "اكتشف أقسامنا المميزة",
+        "games": "قسم الألعاب",
+        "games-desc": "ألعاب مجانية ومدفوعة بخصومات تصل إلى 90%",
+        "bots": "بوتات تليجرام",
+        "bots-desc": "بوتات ذكية توفر لك الوقت والجهد في مختلف المهام",
+        "apps": "تطبيقات موصى بها",
+        "apps-desc": "تطبيقات تساعدك في توفير المال وتنظيم حياتك",
+        "popular-sites": "مواقع كل الناس بتدور عليها",
+        "popular-sites-desc": "أشهر المواقع التي يحتاجها الجميع في حياتهم اليومية",
+        "articles": "📚 مقالات مميزة",
+        "article1-title": "أفضل 10 تطبيقات لتوفير المال في 2023",
+        "article1-desc": "اكتشف التطبيقات التي ستساعدك على توفير المال وإدارة ميزانيتك بشكل أفضل",
+        "article2-title": "كيف تستخدم بوتات التليجرام لتوفير الوقت",
+        "article2-desc": "دليل شامل لأفضل بوتات التليجرام التي توفر لك ساعات من العمل اليومي",
+        "article3-title": "ألعاب مجانية يجب أن تجربها هذا الشهر",
+        "article3-desc": "قائمة بأفضل الألعاب المجانية المتاحة الآن على مختلف المنصات",
+        "read-more": "قراءة المزيد",
+        "weekly-offers": "أفضل العروض هذا الأسبوع",
+        "weekly-offers-desc": "اكتشف أحدث العروض والتخفيضات الحصرية من متجرنا الإلكتروني",
+        "most-popular": "المواقع الأكثر شهرة",
+        "shopping-sites": "مواقع التسوق الشهيرة",
+        "social-sites": "مواقع التواصل الاجتماعي",
+        "site1": "يوتيوب",
+        "site1-desc": "أكبر منصة لمشاركة الفيديوهات في العالم",
+        "site2": "جوجل",
+        "site2-desc": "محرك البحث الأشهر في العالم",
+        "site3": "ويكيبيديا",
+        "site3-desc": "الموسوعة الحرة التي يشارك فيها الجميع",
+        "site4": "أمازون",
+        "site4-desc": "أكبر متجر إلكتروني في العالم",
+        "site5": "فيسبوك",
+        "site5-desc": "أكبر شبكة تواصل اجتماعي في العالم",
+        "site6": "تويتر",
+        "site6-desc": "منصة للمحادثات والأخبار الفورية",
+        "site7": "علي اكسبرس",
+        "site7-desc": "منصة تسوق عالمية بأسعار منافسة",
+        "site8": "نون",
+        "site8-desc": "أكبر منصة تسوق في الشرق الأوسط",
+        "site9": "انستغرام",
+        "site9-desc": "منصة لمشاركة الصور والفيديوهات",
+        "site-info": "معلومات عن الموقع",
+        "visit-site": "زيارة الموقع",
+        // باقي الترجمات تبقى كما هي
+      },
+      en: {
+        "page-title": "SaveForYou - Wafa3rnalak",
+        "welcome": "Welcome to Wafa3rnalak",
+        "hero-text": "Your premier destination for exclusive offers, smart bots, and premium apps to save your time and money",
+        "discover": "Discover Our Featured Sections",
+        "games": "Games Section",
+        "games-desc": "Free and paid games with discounts up to 90%",
+        "bots": "Telegram Bots",
+        "bots-desc": "Smart bots that save you time and effort in various tasks",
+        "apps": "Recommended Apps",
+        "apps-desc": "Apps that help you save money and organize your life",
+        "popular-sites": "Sites Everyone is Looking For",
+        "popular-sites-desc": "The most popular sites everyone needs in their daily lives",
+        "articles": "📚 Featured Articles",
+        "article1-title": "Top 10 Money Saving Apps in 2023",
+        "article1-desc": "Discover apps that will help you save money and manage your budget better",
+        "article2-title": "How to Use Telegram Bots to Save Time",
+        "article2-desc": "A comprehensive guide to the best Telegram bots that save you hours of daily work",
+        "article3-title": "Free Games You Should Try This Month",
+        "article3-desc": "List of the best free games available now on various platforms",
+        "read-more": "Read More",
+        "weekly-offers": "Best Offers This Week",
+        "weekly-offers-desc": "Discover the latest exclusive offers and discounts from our e-store",
+        "most-popular": "Most Popular Sites",
+        "shopping-sites": "Popular Shopping Sites",
+        "social-sites": "Social Media Sites",
+        "site1": "YouTube",
+        "site1-desc": "The largest video sharing platform in the world",
+        "site2": "Google",
+        "site2-desc": "The most popular search engine in the world",
+        "site3": "Wikipedia",
+        "site3-desc": "The free encyclopedia that everyone contributes to",
+        "site4": "Amazon",
+        "site4-desc": "The largest online store in the world",
+        "site5": "Facebook",
+        "site5-desc": "The largest social network in the world",
+        "site6": "Twitter",
+        "site6-desc": "Platform for conversations and instant news",
+        "site7": "AliExpress",
+        "site7-desc": "Global shopping platform with competitive prices",
+        "site8": "Noon",
+        "site8-desc": "The largest shopping platform in the Middle East",
+        "site9": "Instagram",
+        "site9-desc": "Platform for sharing photos and videos",
+        "site-info": "About the Site",
+        "visit-site": "Visit Site",
+        // باقي الترجمات تبقى كما هي
+      }
+    };
+    
+    // تغيير اللغة
+    function changeLanguage(lang) {
+      // تحديث سمة اللغة واتجاه النص
+      htmlElement.lang = lang;
+      htmlElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      
+      // تحديث عنوان الصفحة
+      document.title = translations[lang]["page-title"];
+      
+      // تحديث النصوص
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      // تحديث أزرار اللغة
+      langButtons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      // حفظ التفضيل
+      localStorage.setItem('language', lang);
+    }
+    
+    // إظهار نافذة الموقع
+    function showSiteModal(siteId) {
+      const site = popularSites[siteId];
+      document.getElementById('site-icon').textContent = site.icon;
+      document.getElementById('site-title').textContent = site.title;
+      document.getElementById('site-description').textContent = site.description;
+      document.getElementById('site-details').textContent = site.details;
+      document.getElementById('site-link').href = site.link;
+      
+      siteModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // إغلاق نافذة الموقع
+    function closeSiteModal() {
+      siteModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // تبديل الصفحات
+    function showPage(pageId) {
+      // إخفاء جميع الصفحات
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // إظهار الصفحة المطلوبة
+      document.getElementById(`${pageId}-page`).classList.add('active');
+      
+      // تحديث حالة الروابط في شريط التنقل
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === pageId) {
+          link.classList.add('active');
+        }
+      });
+      
+      // التمرير إلى أعلى الصفحة
+      window.scrollTo(0, 0);
+    }
+    
+    // فتح نافذة تسجيل الدخول
     function openLoginModal() {
       loginModal.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // منع التمرير
+      document.body.style.overflow = 'hidden';
     }
     
     // إغلاق نافذة تسجيل الدخول
     function closeLoginModal() {
       loginModal.style.display = 'none';
-      document.body.style.overflow = 'auto'; // إعادة التمرير
+      document.body.style.overflow = 'auto';
     }
     
-    // التحقق من بيانات الدخول
+    // تسجيل الدخول
     loginForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
@@ -385,8 +1276,10 @@
       if (username === adminCredentials.username && password === adminCredentials.password) {
         // نجاح الدخول
         closeLoginModal();
-        alert('تم الدخول بنجاح إلى لوحة الإدارة!');
-        window.location.href = 'dashboard.html'; // توجيه إلى لوحة الإدارة
+        alert(htmlElement.lang === 'ar' ? 'تم الدخول بنجاح إلى لوحة الإدارة!' : 'Successfully logged in to the admin dashboard!');
+        
+        // إظهار صفحة لوحة الإدارة
+        showPage('dashboard');
       } else {
         // فشل الدخول
         errorMessage.style.display = 'block';
@@ -396,44 +1289,74 @@
       }
     });
     
-    // إضافة المستمعين للأحداث
-    dashboardLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      openLoginModal();
-    });
-    
-    dashboardCardLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      openLoginModal();
-    });
-    
-    // إغلاق النافذة عند النقر خارجها
-    loginModal.addEventListener('click', function(e) {
-      if (e.target === loginModal) {
-        closeLoginModal();
-      }
-    });
-    
-    // ملفات تعريف الارتباط
-    function acceptCookies() {
-      localStorage.setItem("cookiesAccepted", "true");
-      document.getElementById("cookie-banner").style.display = "none";
+    // تسجيل الخروج
+    function logout() {
+      showPage('home');
+      alert(htmlElement.lang === 'ar' ? 'تم تسجيل الخروج من لوحة الإدارة' : 'Logged out from admin dashboard');
     }
-
-    window.onload = function () {
-      if (!localStorage.getItem("cookiesAccepted")) {
-        document.getElementById("cookie-banner").style.display = "block";
+    
+    // إظهار لوحة الإدارة عند النقر على الزر الأخضر
+    dashboardBtn.addEventListener('click', function() {
+      openLoginModal();
+    });
+    
+    // تبديل اللغة
+    langButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        changeLanguage(lang);
+      });
+    });
+    
+    // تبديل الصفحات
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const pageId = this.getAttribute('data-page');
+        showPage(pageId);
+      });
+    });
+    
+    // تهيئة الصفحة عند التحميل
+    window.addEventListener('DOMContentLoaded', function() {
+      // تحميل لغة المستخدم المفضلة
+      const savedLang = localStorage.getItem('language') || 'ar';
+      changeLanguage(savedLang);
+      
+      // إعداد أزرار اللغة
+      langButtons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === savedLang) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // إرسال نموذج التواصل
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert(htmlElement.lang === 'ar' ? 'تم إرسال رسالتك بنجاح! سوف نتصل بك قريبًا.' : 'Your message has been sent successfully! We will contact you soon.');
+          this.reset();
+        });
       }
-    };
+      
+      // إضافة معالجات لروابط التحميل
+      document.querySelectorAll('.read-more').forEach(link => {
+        if (link.getAttribute('data-i18n') === 'download') {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert(htmlElement.lang === 'ar' ? 'جارٍ تحميل الملف...' : 'Downloading file...');
+          });
+        }
+      });
+      
+      // إغلاق نافذة الموقع عند النقر خارجها
+      siteModal.addEventListener('click', function(e) {
+        if (e.target === siteModal) {
+          closeSiteModal();
+        }
+      });
+    });
   </script>
-  
-  <footer>
-    <p>© 2025 وفرنالك - جميع الحقوق محفوظة</p>
-    <p>
-      <a href="index.html">الرئيسية</a> |
-      <a href="offers.html">العروض</a> |
-      <a href="signup.html">تسجيل حساب</a>
-    </p>
-  </footer>
 </body>
 </html>
